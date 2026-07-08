@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>GroupFinder — AI-Powered Telegram Group Discovery | JusticeTech System</title>
+<meta name="description" content="GroupFinder is an AI-powered Telegram group discovery platform with health scoring, XP leveling, tournaments, and 25+ community features.">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#6c55f0">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/features.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="bg-orb bg-orb-1"></div><div class="bg-orb bg-orb-2"></div><div class="bg-orb bg-orb-3"></div>
+<div class="tech-overlay"></div>
+<div class="cursor-dot"></div><div class="cursor-ring"></div>
+<div id="loader"><div class="ld-logo"><img src="images/logo.jpg" class="ld-logo-img" alt=""><div class="ld-name">JusticeTech <span>System</span></div></div><div class="ld-bar"><div class="ld-fill"></div></div><div class="ld-tag">LOADING GROUPFINDER...</div></div>
+<div id="scroll-bar"></div>
+<div id="search-ov"><div class="s-box"><div class="s-top"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="s-inp" class="s-inp" placeholder="Search..."><button id="s-esc" class="s-esc">ESC</button></div><div id="s-results" class="s-results"></div></div></div>
+<div id="cmd-palette"><div class="cmd-box"><div class="cmd-header"><i class="fa-solid fa-magnifying-glass cmd-icon"></i><input type="text" id="cmd-input" class="cmd-input" placeholder="Search commands..."><span class="cmd-shortcut">ESC</span></div><div id="cmd-results" class="cmd-results"></div></div></div>
+<div id="ach-toast" class="achievement-toast"><div class="ach-icon" id="ach-icon">🏆</div><div><div class="ach-badge">Achievement Unlocked</div><div class="ach-title" id="ach-title"></div><div class="ach-desc" id="ach-desc"></div></div><div class="ach-points" id="ach-pts"></div></div>
+<div id="konami-overlay" class="konami-overlay"><canvas id="konami-canvas" class="konami-matrix"></canvas><div class="konami-content"><div class="konami-title">JUSTICE CODE ACTIVATED</div><div class="konami-sub">Use code <strong style="color:var(--cyan)">KONAMI30</strong></div><button class="konami-close" id="konami-close">Close</button></div></div>
+
+<div class="shell">
+<aside id="sidebar">
+  <div class="sb-profile"><img src="images/logo.jpg" alt="" class="sb-logo"><div><div class="sb-name">JusticeTech System</div><div class="sb-status">All Systems Online</div></div></div>
+  <nav class="sb-nav">
+    <a href="index.html" class="sb-link"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+    <a href="index.html#features" class="sb-link"><i class="fa-solid fa-bolt"></i>Services</a>
+    <a href="pricing.html" class="sb-link"><i class="fa-solid fa-tag"></i>Pricing</a>
+    <a href="status.html" class="sb-link"><i class="fa-solid fa-circle-dot"></i>Status</a>
+    <a href="changelog.html" class="sb-link"><i class="fa-solid fa-clock-rotate-left"></i>Changelog</a>
+    <a href="docs.html" class="sb-link"><i class="fa-solid fa-book"></i>Docs</a>
+    <div class="sb-label">Projects</div>
+    <a href="jmwhatsapp.html" class="sb-link"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i>JMWhatsApp<span class="sb-badge">v41</span></a>
+    <a href="misschatra.html" class="sb-link"><i class="fa-solid fa-robot" style="color:var(--brand-light)"></i>Miss Chatra<span class="sb-badge">v16</span></a>
+    <a href="autosave.html" class="sb-link"><i class="fa-solid fa-cloud-arrow-up" style="color:var(--cyan)"></i>Autosave</a>
+    <a href="groupfinder.html" class="sb-link active"><i class="fa-solid fa-magnifying-glass" style="color:#a78bfa"></i>GroupFinder<span class="sb-badge">v66</span></a>
+    <a href="ultragatex.html" class="sb-link"><i class="fa-solid fa-shield-halved" style="color:#a78bfa"></i>UltraGateX</a>
+    <a href="obfuscationary.html" class="sb-link"><i class="fa-solid fa-user-secret" style="color:#f87171"></i>Obfuscationary</a>
+    <a href="liveupdaterx.html" class="sb-link"><i class="fa-solid fa-arrows-rotate" style="color:#38bdf8"></i>LiveUpdaterX</a>
+    <a href="pstore.html" class="sb-link"><i class="fa-solid fa-store" style="color:#4ade80"></i>PStore</a>
+    <a href="buypayx.html" class="sb-link"><i class="fa-solid fa-cart-shopping" style="color:#60a5fa"></i>BuyPayX</a>
+    <a href="baas.html" class="sb-link"><i class="fa-solid fa-server" style="color:#fb923c"></i>BaaS System</a>
+    <div class="sb-label">More</div>
+    <a href="team.html" class="sb-link"><i class="fa-solid fa-users"></i>Team</a>
+    <a href="showcase.html" class="sb-link"><i class="fa-solid fa-trophy"></i>Showcase</a>
+    <a href="referral.html" class="sb-link"><i class="fa-solid fa-share-nodes"></i>Referral</a>
+    <div class="sb-label">System</div>
+    <a href="index.html#contact" class="sb-link"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="#" class="sb-link"><i class="fa-solid fa-gear"></i>Settings</a>
+  </nav>
+  <div class="site-progress"><div class="site-progress-label"><span>Your Progress</span><span id="progress-pct">0%</span></div><div class="site-progress-bar"><div class="site-progress-fill" id="progress-fill" style="width:0%"></div></div></div>
+  <div id="trophy-case" class="trophy-case"></div>
+  <div class="sb-promo"><div class="sb-promo-logo"><img src="images/groupfinder-logo.jpg" alt="">GroupFinder</div><div class="sb-promo-text">v66 — AI matching live<br><span id="sb-clock"></span></div><a href="index.html#contact" class="sb-promo-btn"><i class="fa-solid fa-magnifying-glass"></i> Get Access</a></div>
+</aside>
+<div id="sb-overlay"></div>
+
+<div id="main">
+  <header id="topbar">
+    <button class="ham-btn" aria-label="Toggle sidebar"><span></span><span></span><span></span></button>
+    <div class="tb-breadcrumb"><a href="index.html" style="color:var(--brand-light)"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i><a href="index.html#projects" style="color:var(--brand-light)">Projects</a><i class="fa-solid fa-chevron-right"></i><span>GroupFinder</span></div>
+    <div class="tb-right">
+      <button class="tb-search" data-search><i class="fa-solid fa-magnifying-glass"></i> Search... <kbd>⌘K</kbd></button>
+      <div class="notif-btn" style="position:relative"><button class="tb-btn" id="notif-btn"><i class="fa-regular fa-bell"></i><span class="notif-dot"></span></button><div class="notif-dropdown" id="notif-dropdown"><div class="notif-header"><span class="notif-title">Notifications</span><span class="notif-mark-read" id="notif-mark-read">Mark all read</span></div><div id="notif-body"></div><div class="notif-footer"><a href="changelog.html">View all updates →</a></div></div></div>
+      <button class="tb-btn" data-cmd-open title="Command Palette (⌘K)"><i class="fa-solid fa-terminal"></i></button>
+      <button class="theme-pill" data-theme-toggle><div class="theme-pill-thumb">🌙</div><div class="theme-pill-track"></div></button>
+      <img src="images/logo.jpg" alt="" class="tb-avatar">
+    </div>
+  </header>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <div class="proj-hero">
+      <div class="h-orb h-orb-1" style="background:rgba(167,139,250,0.18)"></div>
+      <div class="h-orb h-orb-2" style="background:rgba(56,189,248,0.1)"></div>
+      <div class="proj-hero-grid">
+        <div class="fade-u">
+          <div class="proj-bc"><a href="index.html">Home</a><i class="fa-solid fa-chevron-right"></i><a href="index.html#projects">Projects</a><i class="fa-solid fa-chevron-right"></i>GroupFinder</div>
+          <div class="proj-ver"><i class="fa-solid fa-code-branch"></i> v66 Optimized — Stable</div>
+          <h1 class="proj-title">Group<span style="color:#a78bfa">Finder</span></h1>
+          <p class="proj-desc">An AI-powered Telegram group discovery platform. Onboarding-based match scoring, a live health-score algorithm, XP-driven ranks, group tournaments, and 25+ community-growth features — all in one bot.</p>
+          <div class="proj-meta">
+            <div class="pm-i"><div class="pm-l">Category</div><div class="pm-v">Community Discovery</div></div>
+            <div class="pm-i"><div class="pm-l">Stack</div><div class="pm-v">Python · python-telegram-bot</div></div>
+            <div class="pm-i"><div class="pm-l">Status</div><div class="pm-v pm-live">Live & Maintained</div></div>
+            <div class="pm-i"><div class="pm-l">Categories</div><div class="pm-v">15 Discovery Tags</div></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap">
+            <a href="#features" class="btn btn-p"><i class="fa-solid fa-compass"></i> Explore Features</a>
+            <a href="#matching" class="btn btn-o"><i class="fa-solid fa-brain"></i> AI Matching</a>
+          </div>
+        </div>
+        <div class="fade-r">
+          <div class="proj-img-wrap"><img src="images/groupfinder-logo.jpg" alt="GroupFinder"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <section class="sec sec-alt">
+      <div class="stats-band zoom fade-u">
+        <div class="stat-c"><div class="stat-n"><span class="counter" data-target="25">0</span><span class="stat-a">+</span></div><div class="stat-lbl">Community Features</div></div>
+        <div class="stat-c"><div class="stat-n"><span class="counter" data-target="15">0</span></div><div class="stat-lbl">Discovery Categories</div></div>
+        <div class="stat-c"><div class="stat-n"><span class="counter" data-target="10">0</span></div><div class="stat-lbl">Rank Tiers</div></div>
+        <div class="stat-c"><div class="stat-n"><span class="counter" data-target="10">0</span></div><div class="stat-lbl">Languages Supported</div></div>
+      </div>
+    </section>
+
+    <!-- AI MATCHING -->
+    <section id="matching" class="sec">
+      <div class="sec-head c"><div class="sec-eye">Core Engine</div><h2 class="sec-title">AI-Powered <span class="gt">Compatibility Matching</span></h2><p class="sec-sub">Every group gets a personalized 0–100% match score based on your onboarding answers — interest, activity level, and vibe.</p></div>
+      <div style="max-width:700px;margin:0 auto" class="fade-u">
+        <div class="code-blk"><span class="cc"># Match scoring weights per group</span><br>Category interest fit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">max 40 pts</span><br>Activity-level fitness&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">max 30 pts</span><br>Community vibe match&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">max 30 pts</span><br><br><span class="cc"># Onboarding inputs</span><br>interest:  technology · entertainment · finance ·<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sports · arts · lifestyle · knowledge · crypto<br>activity:  very_active · moderate · chill<br>vibe:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; learning · fun · networking · creative · trading</div>
+      </div>
+    </section>
+
+    <!-- HEALTH SCORE -->
+    <section class="sec sec-alt">
+      <div class="sec-head c"><div class="sec-eye">Quality Assurance</div><h2 class="sec-title">Live Group <span class="gt">Health Score</span></h2><p class="sec-sub">Every group is continuously scored so you never join a dead or low-quality community.</p></div>
+      <div class="benchmark-bars fade-u" style="max-width:600px;margin:0 auto">
+        <div class="bench-row"><div class="bench-label">Activity</div><div class="bench-track"><div class="bench-fill" style="width:40%;background:linear-gradient(90deg,#a78bfa,#8b5cf6)"></div></div><div class="bench-val">40%</div></div>
+        <div class="bench-row"><div class="bench-label">Members</div><div class="bench-track"><div class="bench-fill" style="width:30%;background:linear-gradient(90deg,#38bdf8,#0ea5e9)"></div></div><div class="bench-val">30%</div></div>
+        <div class="bench-row"><div class="bench-label">Rating</div><div class="bench-track"><div class="bench-fill" style="width:20%;background:linear-gradient(90deg,var(--green),#4ade80)"></div></div><div class="bench-val">20%</div></div>
+        <div class="bench-row"><div class="bench-label">Recency</div><div class="bench-track"><div class="bench-fill" style="width:10%;background:linear-gradient(90deg,var(--amber),#fbbf24)"></div></div><div class="bench-val">10%</div></div>
+      </div>
+    </section>
+
+    <!-- FEATURES GRID 1: DISCOVERY & GAMIFICATION -->
+    <section id="features" class="sec">
+      <div class="sec-head"><h2 class="sec-title" style="text-align:center">🎯 Discovery & <span class="gt">Gamification</span></h2></div>
+      <div class="benefits-grid fade-u">
+        <div class="ben-card"><div class="ben-n">01</div><div class="ben-title" style="color:#a78bfa"><i class="fa-solid fa-robot" style="margin-right:7px"></i>AI Group Summarizer</div><div class="ben-desc">Instant keyword-based AI summary of any group's recent activity, top topics, and community vibe score.</div></div>
+        <div class="ben-card"><div class="ben-n">02</div><div class="ben-title" style="color:var(--cyan)"><i class="fa-solid fa-flag-checkered" style="margin-right:7px"></i>Weekly Missions</div><div class="ben-desc">5 fresh challenges every Monday — join groups, write reviews, invite friends, browse categories — for bonus XP.</div></div>
+        <div class="ben-card"><div class="ben-n">03</div><div class="ben-title" style="color:var(--amber)"><i class="fa-solid fa-trophy" style="margin-right:7px"></i>Group Tournaments</div><div class="ben-desc">Monthly competitions between groups in the same category. Winner earns a 🏆 Champion badge for a full month.</div></div>
+        <div class="ben-card"><div class="ben-n">04</div><div class="ben-title" style="color:var(--green)"><i class="fa-solid fa-square-poll-vertical" style="margin-right:7px"></i>Group of the Week Vote</div><div class="ben-desc">Community-wide voting every week — the winner receives a 🏅 Community Choice badge announced every Monday.</div></div>
+        <div class="ben-card"><div class="ben-n">05</div><div class="ben-title" style="color:#ec4899"><i class="fa-solid fa-id-card" style="margin-right:7px"></i>Verified Creator Profiles</div><div class="ben-desc">Level 5+ users who own groups can apply for a 🪪 Verified Creator badge shown across their public profile.</div></div>
+        <div class="ben-card"><div class="ben-n">06</div><div class="ben-title" style="color:#60a5fa"><i class="fa-solid fa-ranking-star" style="margin-right:7px"></i>10-Tier Rank System</div><div class="ben-desc">Progress from 🌱 Newcomer through Explorer, Scout, Veteran, Elite, Champion, Legend, to 👑 Grandmaster.</div></div>
+      </div>
+    </section>
+
+    <!-- FEATURES GRID 2: GROUP MANAGEMENT -->
+    <section class="sec sec-alt">
+      <div class="sec-head"><h2 class="sec-title" style="text-align:center">🔧 Group <span class="gt">Management Tools</span></h2></div>
+      <div class="benefits-grid fade-u">
+        <div class="ben-card"><div class="ben-n">07</div><div class="ben-title" style="color:#a78bfa"><i class="fa-solid fa-link" style="margin-right:7px"></i>Invite Link Rotator</div><div class="ben-desc">Auto-checks every group's invite link every 4 hours. Broken links trigger an instant admin DM with fix instructions.</div></div>
+        <div class="ben-card"><div class="ben-n">08</div><div class="ben-title" style="color:var(--cyan)"><i class="fa-solid fa-list-check" style="margin-right:7px"></i>Group Request Board</div><div class="ben-desc">Post what group you're looking for — admins browse and claim requests, you get a DM with the match.</div></div>
+        <div class="ben-card"><div class="ben-n">09</div><div class="ben-title" style="color:var(--amber)"><i class="fa-solid fa-code-merge" style="margin-right:7px"></i>Group Mergers</div><div class="ben-desc">Two small groups in the same category can merge — members redirect automatically, both admin teams notified.</div></div>
+        <div class="ben-card"><div class="ben-n">10</div><div class="ben-title" style="color:var(--green)"><i class="fa-solid fa-clone" style="margin-right:7px"></i>Group Cloning</div><div class="ben-desc">Copy a group's category, language tag, and welcome message to your own group in a single command.</div></div>
+        <div class="ben-card"><div class="ben-n">11</div><div class="ben-title" style="color:#ec4899"><i class="fa-solid fa-star" style="margin-right:7px"></i>Featured Listings & Boost</div><div class="ben-desc">Feature a group for N days at the top of its category, or temporarily boost visibility for up to 48 hours.</div></div>
+        <div class="ben-card"><div class="ben-n">12</div><div class="ben-title" style="color:#60a5fa"><i class="fa-solid fa-right-left" style="margin-right:7px"></i>Ownership Transfer</div><div class="ben-desc">Formally transfer a group's GroupFinder ownership to another user, confirmed via DM before completion.</div></div>
+      </div>
+    </section>
+
+    <!-- FEATURES GRID 3: COMMUNICATION -->
+    <section class="sec">
+      <div class="sec-head"><h2 class="sec-title" style="text-align:center">📢 Communication & <span class="gt">Engagement</span></h2></div>
+      <div class="benefits-grid fade-u">
+        <div class="ben-card"><div class="ben-n">13</div><div class="ben-title" style="color:#a78bfa"><i class="fa-solid fa-chart-simple" style="margin-right:7px"></i>Weekly Admin Reports</div><div class="ben-desc">Every Monday, group admins get a personalized DM: members, health score, rating, top topics, and tips.</div></div>
+        <div class="ben-card"><div class="ben-n">14</div><div class="ben-title" style="color:var(--cyan)"><i class="fa-solid fa-earth-africa" style="margin-right:7px"></i>Multi-Language Discovery</div><div class="ben-desc">Browse groups filtered by language — English, Spanish, French, Arabic, Hausa, Yoruba, Igbo, Swahili, Chinese.</div></div>
+        <div class="ben-card"><div class="ben-n">15</div><div class="ben-title" style="color:var(--amber)"><i class="fa-solid fa-square-poll-horizontal" style="margin-right:7px"></i>Anonymous Group Polls</div><div class="ben-desc">Admins create anonymous polls — GroupFinder DMs every member privately and shows instant results.</div></div>
+        <div class="ben-card"><div class="ben-n">16</div><div class="ben-title" style="color:var(--green)"><i class="fa-solid fa-arrows-rotate" style="margin-right:7px"></i>Recurring Announcements</div><div class="ben-desc">Schedule announcements that auto-repeat daily, weekly, or on specific days — perfect for rules reminders.</div></div>
+        <div class="ben-card"><div class="ben-n">17</div><div class="ben-title" style="color:#ec4899"><i class="fa-solid fa-hand-wave" style="margin-right:7px"></i>Welcome Message Builder</div><div class="ben-desc">Custom welcome DM for every new member with a {name} placeholder for personalization.</div></div>
+        <div class="ben-card"><div class="ben-n">18</div><div class="ben-title" style="color:#60a5fa"><i class="fa-solid fa-newspaper" style="margin-right:7px"></i>Group Newsletters</div><div class="ben-desc">Users subscribe to specific groups — admins write and broadcast newsletters directly to subscriber DMs.</div></div>
+      </div>
+    </section>
+
+    <!-- FEATURES GRID 4: SAFETY & INTELLIGENCE -->
+    <section class="sec sec-alt">
+      <div class="sec-head"><h2 class="sec-title" style="text-align:center">🛡️ Safety & <span class="gt">Intelligence</span></h2></div>
+      <div class="benefits-grid fade-u">
+        <div class="ben-card"><div class="ben-n">19</div><div class="ben-title" style="color:#a78bfa"><i class="fa-solid fa-triangle-exclamation" style="margin-right:7px"></i>Duplicate Group Detector</div><div class="ben-desc">Automatically flags similarly-named groups to admins when the bot joins, preventing fragmented communities.</div></div>
+        <div class="ben-card"><div class="ben-n">20</div><div class="ben-title" style="color:var(--cyan)"><i class="fa-solid fa-circle-dot" style="margin-right:7px"></i>Live Activity Indicator</div><div class="ben-desc">Real-time activity dot on every card: 🟢 &lt;15min · 🟡 &lt;1hr · 🔵 &lt;1 day · 🔴 older.</div></div>
+        <div class="ben-card"><div class="ben-n">21</div><div class="ben-title" style="color:var(--amber)"><i class="fa-solid fa-tags" style="margin-right:7px"></i>Auto-Tag Extraction</div><div class="ben-desc">Analyzes messages every 2 hours and auto-extracts top discussion topics as hashtags on the group card.</div></div>
+        <div class="ben-card"><div class="ben-n">22</div><div class="ben-title" style="color:var(--red)"><i class="fa-solid fa-shield-virus" style="margin-right:7px"></i>Scam Link Scanner</div><div class="ben-desc">Passively scans all messages for known scam and phishing patterns — auto-flags groups and alerts admins instantly.</div></div>
+        <div class="ben-card"><div class="ben-n">23</div><div class="ben-title" style="color:#ec4899"><i class="fa-solid fa-flag" style="margin-right:7px"></i>Report & Appeal System</div><div class="ben-desc">Report any group with a specific reason — scam, spam, inactive, wrong category. Auto-flagged at 5+ reports.</div></div>
+        <div class="ben-card"><div class="ben-n">24</div><div class="ben-title" style="color:#60a5fa"><i class="fa-solid fa-users-viewfinder" style="margin-right:7px"></i>Member Count Verification</div><div class="ben-desc">Verifies each group's real Telegram member count every 6 hours — no more stale, inflated numbers.</div></div>
+      </div>
+    </section>
+
+    <!-- ECONOMY -->
+    <section class="sec">
+      <div class="sec-head c"><div class="sec-eye">Earn While You Discover</div><h2 class="sec-title">Built-In <span class="gt">Wallet Economy</span></h2><p class="sec-sub">XP and Points convert into real wallet earnings — withdraw once you hit the threshold.</p></div>
+      <div class="workflow-track fade-u">
+        <div class="ws"><div class="ws-n">01</div><div class="ws-t" style="color:#a78bfa">Earn XP & Points</div><div class="ws-d">Send messages, write reviews, save groups, refer friends, or create events.</div></div>
+        <div class="ws"><div class="ws-n">02</div><div class="ws-t" style="color:var(--cyan)">Level Up</div><div class="ws-d">Progress through 10 rank tiers from Newcomer to Grandmaster as XP accumulates.</div></div>
+        <div class="ws"><div class="ws-n">03</div><div class="ws-t" style="color:var(--green)">Track Your Wallet</div><div class="ws-d">Points convert to wallet balance — check anytime with /wallet or /mystatus.</div></div>
+        <div class="ws"><div class="ws-n">04</div><div class="ws-t" style="color:var(--amber)">Withdraw Earnings</div><div class="ws-d">Request a payout once your balance clears the minimum withdrawal threshold.</div></div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="sec sec-alt">
+      <div class="sec-head c"><div class="sec-eye">Browse By Interest</div><h2 class="sec-title">15 Discovery <span class="gt">Categories</span></h2></div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:700px;margin:0 auto" class="fade-u">
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">💻 Tech</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">🎵 Music</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">🎨 Digital Art</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">⚽ Sports</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">🏛️ Politics</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">🎮 Gaming</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">🎬 Movies & TV</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">🔬 Science</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">💹 Finance</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">✈️ Travel</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">🍳 Food & Cooking</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">👗 Fashion</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">💪 Health</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">📚 Education</span>
+        <span class="f-tech" style="font-size:0.8rem;padding:8px 16px">₿ Crypto</span>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="sec">
+      <div class="dl-box fade-u">
+        <div class="proj-ver" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.8)"><i class="fa-solid fa-compass"></i> The Smartest Way To Find Communities</div>
+        <h2 class="sec-title" style="font-size:clamp(1.6rem,3vw,2.2rem)">Discover Your <span class="gt">Perfect Group</span></h2>
+        <p style="color:var(--text-2);text-align:center;max-width:500px;line-height:1.7">Reach out to get GroupFinder deployed for your own community network or Telegram ecosystem.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+          <a href="index.html#contact" class="btn btn-p btn-lg"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <footer id="footer">
+    <div class="foot-grid">
+      <div><div class="foot-logo-row"><img src="images/logo.jpg" class="foot-logo-img" alt=""><div class="foot-logo-name">JusticeTech <span>System</span></div></div><p class="foot-desc">Engineering AI automation, messaging infrastructure, and cloud-native software.</p></div>
+      <div><div class="foot-col-title">Navigate</div><a href="index.html" class="foot-link">Home</a><a href="pricing.html" class="foot-link">Pricing</a><a href="status.html" class="foot-link">Status</a></div>
+      <div><div class="foot-col-title">Projects</div><a href="groupfinder.html" class="foot-link">GroupFinder</a><a href="pstore.html" class="foot-link">PStore</a><a href="buypayx.html" class="foot-link">BuyPayX</a></div>
+      <div><div class="foot-col-title">Company</div><a href="team.html" class="foot-link">Team</a><a href="changelog.html" class="foot-link">Changelog</a><a href="docs.html" class="foot-link">Docs</a></div>
+    </div>
+    <div class="foot-bottom"><div class="foot-copy">&copy; <span data-year></span> JusticeTech System.</div></div>
+  </footer>
+</div>
+</div>
+<a href="index.html#contact" id="float-chat"><span class="fc-live"></span>Chat With Us</a>
+<button id="btt"><i class="fa-solid fa-arrow-up"></i></button>
+<div id="toast-wrap"></div>
+<script src="js/script.js"></script><script src="js/features.js"></script>
+</body>
+</html>

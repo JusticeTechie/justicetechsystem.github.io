@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"><title>Documentation — JusticeTech System</title><link rel="icon" type="image/jpeg" href="images/logo.jpg">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#6c55f0"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/features.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></head>
+<body>
+<canvas id="bg-canvas"></canvas><div class="bg-orb bg-orb-1"></div><div class="bg-orb bg-orb-2"></div><div class="bg-orb bg-orb-3"></div><div class="tech-overlay"></div><div class="cursor-dot"></div><div class="cursor-ring"></div>
+<div id="loader"><div class="ld-logo"><img src="images/logo.jpg" class="ld-logo-img" alt=""><div class="ld-name">JusticeTech <span>System</span></div></div><div class="ld-bar"><div class="ld-fill"></div></div><div class="ld-tag">LOADING DOCS...</div></div>
+<div id="scroll-bar"></div><div id="search-ov"><div class="s-box"><div class="s-top"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="s-inp" class="s-inp" placeholder="Search..."><button id="s-esc" class="s-esc">ESC</button></div><div id="s-results" class="s-results"></div></div></div>
+<div id="cmd-palette"><div class="cmd-box"><div class="cmd-header"><i class="fa-solid fa-magnifying-glass cmd-icon"></i><input type="text" id="cmd-input" class="cmd-input" placeholder="Search..."><span class="cmd-shortcut">ESC</span></div><div id="cmd-results" class="cmd-results"></div></div></div>
+<div id="ach-toast" class="achievement-toast"><div class="ach-icon" id="ach-icon">🏆</div><div><div class="ach-badge">Achievement Unlocked</div><div class="ach-title" id="ach-title"></div><div class="ach-desc" id="ach-desc"></div></div><div class="ach-points" id="ach-pts"></div></div>
+<div id="konami-overlay" class="konami-overlay"><canvas id="konami-canvas" class="konami-matrix"></canvas><div class="konami-content"><div class="konami-title">JUSTICE CODE ACTIVATED</div><div class="konami-sub">Use code <strong style="color:var(--cyan)">KONAMI30</strong></div><button class="konami-close" id="konami-close">Close</button></div></div>
+<div class="shell">
+<aside id="sidebar"><div class="sb-profile"><img src="images/logo.jpg" alt="" class="sb-logo"><div><div class="sb-name">JusticeTech System</div><div class="sb-status">All Systems Online</div></div></div>
+<nav class="sb-nav"><a href="index.html" class="sb-link"><i class="fa-solid fa-gauge-high"></i>Dashboard</a><a href="pricing.html" class="sb-link"><i class="fa-solid fa-tag"></i>Pricing</a><a href="status.html" class="sb-link"><i class="fa-solid fa-circle-dot"></i>Status</a><a href="changelog.html" class="sb-link"><i class="fa-solid fa-clock-rotate-left"></i>Changelog</a><a href="docs.html" class="sb-link active"><i class="fa-solid fa-book"></i>Docs</a>
+        <div class="sb-label">Projects</div>
+    <a href="jmwhatsapp.html" class="sb-link"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i>JMWhatsApp<span class="sb-badge">v41</span></a>
+    <a href="misschatra.html" class="sb-link"><i class="fa-solid fa-robot" style="color:var(--brand-light)"></i>Miss Chatra<span class="sb-badge">v16</span></a>
+    <a href="autosave.html" class="sb-link"><i class="fa-solid fa-cloud-arrow-up" style="color:var(--cyan)"></i>Autosave</a>
+    <a href="groupfinder.html" class="sb-link"><i class="fa-solid fa-magnifying-glass" style="color:#a78bfa"></i>GroupFinder<span class="sb-badge">v66</span></a>
+    <a href="ultragatex.html" class="sb-link"><i class="fa-solid fa-shield-halved" style="color:#a78bfa"></i>UltraGateX</a>
+    <a href="obfuscationary.html" class="sb-link"><i class="fa-solid fa-user-secret" style="color:#f87171"></i>Obfuscationary</a>
+    <a href="liveupdaterx.html" class="sb-link"><i class="fa-solid fa-arrows-rotate" style="color:#38bdf8"></i>LiveUpdaterX</a>
+    <a href="pstore.html" class="sb-link"><i class="fa-solid fa-store" style="color:#4ade80"></i>PStore</a>
+    <a href="buypayx.html" class="sb-link"><i class="fa-solid fa-cart-shopping" style="color:#60a5fa"></i>BuyPayX</a>
+    <a href="baas.html" class="sb-link"><i class="fa-solid fa-server" style="color:#fb923c"></i>BaaS System</a>
+    <div class="sb-label">More</div><a href="team.html" class="sb-link"><i class="fa-solid fa-users"></i>Team</a><a href="showcase.html" class="sb-link"><i class="fa-solid fa-trophy"></i>Showcase</a><a href="index.html#contact" class="sb-link"><i class="fa-solid fa-envelope"></i>Contact</a></nav>
+<div class="site-progress">
+    <div class="site-progress-label"><span>Your Progress</span><span id="progress-pct">0%</span></div>
+    <div class="site-progress-bar"><div class="site-progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+  <div id="trophy-case" class="trophy-case"></div>
+<div class="sb-promo"><div class="sb-promo-logo"><img src="images/logo.jpg" alt="">JusticeTech</div><div class="sb-promo-text">Full API reference<br><span id="sb-clock"></span></div><a href="#getting-started" class="sb-promo-btn"><i class="fa-solid fa-rocket"></i> Get Started</a></div></aside>
+<div id="sb-overlay"></div>
+<div id="main">
+<header id="topbar"><button class="ham-btn"><span></span><span></span><span></span></button><div class="tb-breadcrumb"><a href="index.html" style="color:var(--brand-light)"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i><span>Documentation</span></div><div class="tb-right"><button class="theme-pill" data-theme-toggle><div class="theme-pill-thumb">🌙</div><div class="theme-pill-track"></div></button><img src="images/logo.jpg" alt="" class="tb-avatar"></div></header>
+<div class="page">
+<div class="page-hero-band"><div class="page-hero-eyebrow">API Reference</div><h1 class="page-hero-title">Developer <span class="gt">Documentation</span></h1><p class="page-hero-sub">Everything you need to integrate, deploy, and extend JusticeTech's products.</p></div>
+<section class="sec">
+<div class="docs-layout">
+  <div class="docs-sidebar">
+    <div class="docs-sidebar-section">
+      <div class="docs-sidebar-title">Getting Started</div>
+      <div class="docs-sidebar-link active">Introduction</div>
+      <div class="docs-sidebar-link">Authentication</div>
+      <div class="docs-sidebar-link">Quick Start</div>
+    </div>
+    <div class="docs-sidebar-section">
+      <div class="docs-sidebar-title">JMWhatsApp API</div>
+      <div class="docs-sidebar-link">Send Message</div>
+      <div class="docs-sidebar-link">Webhook Events</div>
+      <div class="docs-sidebar-link">Session Management</div>
+    </div>
+    <div class="docs-sidebar-section">
+      <div class="docs-sidebar-title">Miss Chatra API</div>
+      <div class="docs-sidebar-link">Chat Completion</div>
+      <div class="docs-sidebar-link">Endpoint Selection</div>
+    </div>
+    <div class="docs-sidebar-section">
+      <div class="docs-sidebar-title">Autosave API</div>
+      <div class="docs-sidebar-link">Contacts</div>
+      <div class="docs-sidebar-link">Sync Status</div>
+    </div>
+  </div>
+  <div class="docs-content fade-u">
+    <div id="getting-started" class="docs-section">
+      <h2>Introduction</h2>
+      <p>Welcome to the JusticeTech System API documentation. Our REST APIs let you integrate JMWhatsApp, Miss Chatra, and Contact Autosave directly into your applications.</p>
+      <p>All API requests require authentication via API key, and responses are returned in JSON format with consistent error handling across all three products.</p>
+      <h3>Base URL</h3>
+      <div class="docs-endpoint"><span class="method-badge method-get">BASE</span> https://api.justicetechsystem.space/v1</div>
+      <h3>Authentication</h3>
+      <p>Include your API key in the request header:</p>
+      <div class="code-blk" id="auth-code"><span class="cc"># Add to every request header</span><br><span class="ck">Authorization:</span> Bearer YOUR_API_KEY</div>
+      <button class="docs-copy-btn" data-copy="auth-code"><i class="fa-solid fa-copy"></i> Copy</button>
+    </div>
+
+    <div class="docs-section">
+      <h2>JMWhatsApp — Send Message</h2>
+      <p>Send a WhatsApp message programmatically through your connected JMWhatsApp instance.</p>
+      <div class="docs-endpoint"><span class="method-badge method-post">POST</span> /jmwhatsapp/send</div>
+      <table class="docs-param-table">
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+        <tr><td>to</td><td>string</td><td>Recipient phone number (with country code)</td></tr>
+        <tr><td>message</td><td>string</td><td>Text content to send</td></tr>
+        <tr><td>media_url</td><td>string?</td><td>Optional media attachment URL</td></tr>
+      </table>
+      <div class="code-blk" id="jm-code"><span class="cc">// Example request</span><br>{<br>&nbsp;&nbsp;<span class="cv">"to"</span>: <span class="cs">"+2348012345678"</span>,<br>&nbsp;&nbsp;<span class="cv">"message"</span>: <span class="cs">"Hello from the API!"</span><br>}</div>
+      <button class="docs-copy-btn" data-copy="jm-code"><i class="fa-solid fa-copy"></i> Copy</button>
+    </div>
+
+    <div class="docs-section">
+      <h2>Miss Chatra — Chat Completion</h2>
+      <p>Send a message to Miss Chatra's AI engine and receive a context-aware response routed to the optimal AI endpoint.</p>
+      <div class="docs-endpoint"><span class="method-badge method-post">POST</span> /chatra/complete</div>
+      <table class="docs-param-table">
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+        <tr><td>prompt</td><td>string</td><td>The user's message</td></tr>
+        <tr><td>session_id</td><td>string</td><td>Conversation ID for context retention</td></tr>
+        <tr><td>endpoint</td><td>string?</td><td>Force a specific AI model (optional)</td></tr>
+      </table>
+      <div class="code-blk" id="mc-code"><span class="cc">// Example response</span><br>{<br>&nbsp;&nbsp;<span class="cv">"reply"</span>: <span class="cs">"Sure, I can help with that!"</span>,<br>&nbsp;&nbsp;<span class="cv">"endpoint_used"</span>: <span class="cs">"gemini-2.5-flash"</span>,<br>&nbsp;&nbsp;<span class="cv">"latency_ms"</span>: <span class="ck">340</span><br>}</div>
+      <button class="docs-copy-btn" data-copy="mc-code"><i class="fa-solid fa-copy"></i> Copy</button>
+    </div>
+
+    <div class="docs-section">
+      <h2>Contact Autosave — List Contacts</h2>
+      <p>Retrieve all synced contacts with pagination support.</p>
+      <div class="docs-endpoint"><span class="method-badge method-get">GET</span> /autosave/contacts?page=1&limit=50</div>
+      <table class="docs-param-table">
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+        <tr><td>page</td><td>integer</td><td>Page number (default: 1)</td></tr>
+        <tr><td>limit</td><td>integer</td><td>Results per page (max: 100)</td></tr>
+      </table>
+      <div class="code-blk" id="as-code"><span class="cc"># cURL example</span><br><span class="ck">curl</span> https://api.justicetechsystem.space/v1/autosave/contacts \<br>&nbsp;&nbsp;-H <span class="cs">"Authorization: Bearer YOUR_KEY"</span></div>
+      <button class="docs-copy-btn" data-copy="as-code"><i class="fa-solid fa-copy"></i> Copy</button>
+    </div>
+  </div>
+</div>
+</section>
+</div>
+<footer id="footer"><div class="foot-grid"><div><div class="foot-logo-row"><img src="images/logo.jpg" class="foot-logo-img" alt=""><div class="foot-logo-name">JusticeTech <span>System</span></div></div><p class="foot-desc">Engineering AI automation, messaging infrastructure, and cloud-native software.</p></div><div><div class="foot-col-title">Navigate</div><a href="index.html" class="foot-link">Home</a><a href="pricing.html" class="foot-link">Pricing</a><a href="status.html" class="foot-link">Status</a></div><div><div class="foot-col-title">Projects</div><a href="jmwhatsapp.html" class="foot-link">JMWhatsApp</a><a href="misschatra.html" class="foot-link">Miss Chatra</a><a href="autosave.html" class="foot-link">Autosave</a></div><div><div class="foot-col-title">Company</div><a href="team.html" class="foot-link">Team</a><a href="changelog.html" class="foot-link">Changelog</a><a href="docs.html" class="foot-link">Docs</a></div></div><div class="foot-bottom"><div class="foot-copy">&copy; <span data-year></span> JusticeTech System.</div></div></footer>
+</div>
+</div>
+<a href="index.html#contact" id="float-chat"><span class="fc-live"></span>Chat With Us</a><button id="btt"><i class="fa-solid fa-arrow-up"></i></button><div id="toast-wrap"></div>
+<script src="js/script.js"></script><script src="js/features.js"></script>
+</body></html>

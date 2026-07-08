@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>JusticeTech System — Building Smart Technology Solutions For The Future</title>
+<meta name="description" content="JusticeTech System engineers AI automation, WhatsApp systems, and intelligent cloud applications for the modern enterprise.">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/features.css">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<!-- ANIMATED TECH BACKGROUND -->
+<!-- TECH BACKGROUND LAYERS -->
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<div class="tech-overlay"></div>
+
+<canvas id="bg-canvas"></canvas>
+
+<!-- CURSOR -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-logo">
+    <img src="images/logo.jpg" alt="JusticeTech System" class="ld-logo-img">
+    <div class="ld-name">JusticeTech <span>System</span></div>
+  </div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+  <div class="ld-tag">INITIALIZING SYSTEMS...</div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-bar"></div>
+
+<!-- SEARCH OVERLAY -->
+<div id="search-ov">
+  <div class="s-box">
+    <div class="s-top">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="s-inp" class="s-inp" placeholder="Search projects, services, sections...">
+      <button id="s-esc" class="s-esc">ESC</button>
+    </div>
+    <div id="s-results" class="s-results"></div>
+  </div>
+</div>
+
+<!-- COMMAND PALETTE -->
+<div id="cmd-palette"><div class="cmd-box"><div class="cmd-header"><i class="fa-solid fa-magnifying-glass cmd-icon"></i><input type="text" id="cmd-input" class="cmd-input" placeholder="Search commands, pages, actions..."><span class="cmd-shortcut">ESC</span></div><div id="cmd-results" class="cmd-results"></div><div class="cmd-footer"><span class="cmd-footer-key"><kbd>↑↓</kbd> navigate</span><span class="cmd-footer-key"><kbd>↵</kbd> select</span><span class="cmd-footer-key"><kbd>esc</kbd> close</span></div></div></div>
+
+<!-- ACHIEVEMENT TOAST -->
+<div id="ach-toast" class="achievement-toast"><div class="ach-icon" id="ach-icon">🏆</div><div><div class="ach-badge">Achievement Unlocked</div><div class="ach-title" id="ach-title"></div><div class="ach-desc" id="ach-desc"></div></div><div class="ach-points" id="ach-pts"></div></div>
+
+<!-- KONAMI EASTER EGG -->
+<div id="konami-overlay" class="konami-overlay"><canvas id="konami-canvas" class="konami-matrix"></canvas><div class="konami-content"><div class="konami-title">JUSTICE CODE ACTIVATED</div><div class="konami-sub">You found the secret. 30 days free — use code <strong style="color:var(--cyan)">KONAMI30</strong></div><button class="konami-close" id="konami-close">Close & Claim</button></div></div>
+
+<!-- EXIT INTENT -->
+<div id="exit-intent" class="exit-intent"><div class="exit-box"><button class="exit-close" id="exit-close"><i class="fa-solid fa-xmark"></i></button><div class="exit-emoji">🎁</div><div class="exit-title">Wait! Don't leave yet.</div><div class="exit-desc">Get 30% off your first month. Enter your email and we'll send the code right now.</div><div class="exit-form"><input type="email" class="exit-input" id="exit-email" placeholder="you@company.com"><button class="exit-submit" id="exit-submit">Claim Offer</button></div><div class="exit-skip" id="exit-skip">No thanks, I'll pay full price</div></div></div>
+
+<div class="shell">
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<aside id="sidebar">
+  <div class="sb-profile">
+    <img src="images/logo.jpg" alt="JusticeTech" class="sb-logo">
+    <div>
+      <div class="sb-name">JusticeTech System</div>
+      <div class="sb-status">All Systems Online</div>
+    </div>
+  </div>
+
+  <nav class="sb-nav">
+    <a href="index.html" class="sb-link active"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+    <a href="#" class="sb-link" data-search><i class="fa-solid fa-magnifying-glass"></i>Search<span style="margin-left:auto;font-size:0.58rem;color:var(--text-3);font-family:'JetBrains Mono',monospace;">⌘K</span></a>
+    <a href="#features" class="sb-link"><i class="fa-solid fa-bolt"></i>Services</a>
+    <a href="#about" class="sb-link"><i class="fa-solid fa-circle-info"></i>About</a>
+
+    <a href="pricing.html" class="sb-link"><i class="fa-solid fa-tag"></i>Pricing</a>
+    <a href="status.html" class="sb-link"><i class="fa-solid fa-circle-dot"></i>Status</a>
+    <a href="changelog.html" class="sb-link"><i class="fa-solid fa-clock-rotate-left"></i>Changelog</a>
+    <a href="docs.html" class="sb-link"><i class="fa-solid fa-book"></i>Docs</a>
+            <div class="sb-label">Projects</div>
+    <a href="jmwhatsapp.html" class="sb-link"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i>JMWhatsApp<span class="sb-badge">v41</span></a>
+    <a href="misschatra.html" class="sb-link"><i class="fa-solid fa-robot" style="color:var(--brand-light)"></i>Miss Chatra<span class="sb-badge">v16</span></a>
+    <a href="autosave.html" class="sb-link"><i class="fa-solid fa-cloud-arrow-up" style="color:var(--cyan)"></i>Autosave</a>
+    <a href="groupfinder.html" class="sb-link"><i class="fa-solid fa-magnifying-glass" style="color:#a78bfa"></i>GroupFinder<span class="sb-badge">v66</span></a>
+    <a href="ultragatex.html" class="sb-link"><i class="fa-solid fa-shield-halved" style="color:#a78bfa"></i>UltraGateX</a>
+    <a href="obfuscationary.html" class="sb-link"><i class="fa-solid fa-user-secret" style="color:#f87171"></i>Obfuscationary</a>
+    <a href="liveupdaterx.html" class="sb-link"><i class="fa-solid fa-arrows-rotate" style="color:#38bdf8"></i>LiveUpdaterX</a>
+    <a href="pstore.html" class="sb-link"><i class="fa-solid fa-store" style="color:#4ade80"></i>PStore</a>
+    <a href="buypayx.html" class="sb-link"><i class="fa-solid fa-cart-shopping" style="color:#60a5fa"></i>BuyPayX</a>
+    <a href="baas.html" class="sb-link"><i class="fa-solid fa-server" style="color:#fb923c"></i>BaaS System</a>
+    <div class="sb-label">More</div>
+    <a href="team.html" class="sb-link"><i class="fa-solid fa-users"></i>Team</a>
+    <a href="showcase.html" class="sb-link"><i class="fa-solid fa-trophy"></i>Showcase</a>
+    <a href="referral.html" class="sb-link"><i class="fa-solid fa-share-nodes"></i>Referral</a>
+    <div class="sb-label">System</div>
+    <a href="#stats" class="sb-link"><i class="fa-solid fa-chart-bar"></i>Analytics</a>
+    <a href="#contact" class="sb-link"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="#" class="sb-link"><i class="fa-solid fa-gear"></i>Settings</a>
+  </nav>
+
+  <div class="site-progress">
+    <div class="site-progress-label"><span>Your Progress</span><span id="progress-pct">0%</span></div>
+    <div class="site-progress-bar"><div class="site-progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+  <div id="trophy-case" class="trophy-case"></div>
+  <div class="sb-promo">
+    <div class="sb-promo-logo">
+      <img src="images/logo.jpg" alt="">
+      JusticeTech System
+    </div>
+    <div class="sb-promo-text">3 systems live &bull; 99.98% uptime &bull; <span id="sb-clock"></span></div>
+    <button class="sb-promo-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <i class="fa-solid fa-paper-plane"></i> Get In Touch
+    </button>
+  </div>
+</aside>
+<div id="sb-overlay"></div>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <!-- TOPBAR -->
+  <header id="topbar">
+    <button class="ham-btn" aria-label="Toggle sidebar"><span></span><span></span><span></span></button>
+    <div class="tb-breadcrumb">
+      <i class="fa-solid fa-house" style="color:var(--brand-light)"></i>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>Dashboard</span>
+    </div>
+    <div class="tb-right">
+      <button class="tb-search" data-search>
+        <i class="fa-solid fa-magnifying-glass"></i> Search anything... <kbd>⌘K</kbd>
+      </button>
+      <div class="notif-btn" style="position:relative"><button class="tb-btn" id="notif-btn" aria-label="Notifications"><i class="fa-regular fa-bell"></i><span class="notif-dot"></span></button><div class="notif-dropdown" id="notif-dropdown"><div class="notif-header"><span class="notif-title">Notifications</span><span class="notif-mark-read" id="notif-mark-read">Mark all read</span></div><div id="notif-body"></div><div class="notif-footer"><a href="changelog.html">View all updates →</a></div></div></div>
+      <button class="tb-btn" data-cmd-open title="Command Palette (⌘K)"><i class="fa-solid fa-terminal"></i></button>
+      <button class="theme-pill" data-theme-toggle aria-label="Toggle theme">
+        <div class="theme-pill-thumb">🌙</div>
+        <div class="theme-pill-track"></div>
+      </button>
+      <img src="images/logo.jpg" alt="" class="tb-avatar">
+    </div>
+  </header>
+
+  <div class="page">
+
+    <!-- ══════════ HERO ══════════ -->
+    <section id="home">
+      <div id="hero">
+        <div class="hero-grid-lines"></div>
+        <div class="h-orb h-orb-1"></div>
+        <div class="h-orb h-orb-2"></div>
+
+        <!-- LEFT: text -->
+        <div class="hero-l">
+          <div class="hero-date" id="hero-date"></div>
+          <h1 class="hero-greeting">Hello, Welcome 👋</h1>
+          <div class="hero-tagline" data-typing='["Building Smart Tech For The Future.", "Engineering AI Automation.", "Powering Intelligent Systems.", "Creating Digital Experiences."]'></div>
+
+          <div class="hero-chips">
+            <a href="misschatra.html" class="chip chip-primary"><i class="fa-solid fa-robot"></i> Meet Miss Chatra</a>
+            <a href="#projects" class="chip chip-outline"><i class="fa-solid fa-rocket"></i> Explore Projects</a>
+            <a href="#contact" class="chip chip-outline"><i class="fa-regular fa-comment-dots"></i> Contact Us</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="hs-item"><div class="hs-val"><span class="a">3</span></div><div class="hs-label">Flagship Systems</div></div>
+            <div class="hs-item"><div class="hs-val">50K<span class="a">+</span></div><div class="hs-label">Active Users</div></div>
+            <div class="hs-item"><div class="hs-val"><span class="a" data-live="99.98" data-v="0.01" data-dec="2" data-suf="%">99.98%</span></div><div class="hs-label">Uptime SLA</div></div>
+            <div class="hs-item"><div class="hs-val"><span class="a">24/7</span></div><div class="hs-label">Monitoring</div></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: ROBOT -->
+        <div class="hero-r">
+          <div class="robot-stage">
+            <div class="rr rr-1"></div>
+            <div class="rr rr-2"></div>
+            <div class="rr rr-3"></div>
+            <div class="robot-glow"></div>
+
+            <!-- Floating badges -->
+            <div class="rb rb-1"><span class="rb-dot rb-dot-g"></span><i class="fa-brands fa-whatsapp" style="color:#25D366"></i>JMWhatsApp Online</div>
+            <div class="rb rb-2"><span class="rb-dot rb-dot-b"></span><i class="fa-solid fa-robot"></i>Miss Chatra Active</div>
+            <div class="rb rb-3"><span class="rb-dot rb-dot-c"></span><i class="fa-solid fa-cloud"></i>Sync Running</div>
+            <div class="rb rb-4"><span class="rb-dot rb-dot-a"></span><i class="fa-solid fa-chart-line"></i><span data-live="187" data-v="8" data-suf="K msgs">187K msgs</span></div>
+
+            <!-- SVG ROBOT -->
+            <div class="robot-wrap">
+              <svg viewBox="0 0 320 380" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <defs>
+                  <radialGradient id="hg" cx="42%" cy="38%" r="58%">
+                    <stop offset="0%" stop-color="#e8e8f8"/><stop offset="70%" stop-color="#c0c0e0"/><stop offset="100%" stop-color="#9090c8"/>
+                  </radialGradient>
+                  <radialGradient id="eyeL" cx="35%" cy="35%" r="65%">
+                    <stop offset="0%" stop-color="#ffa040"/><stop offset="55%" stop-color="#cc6600"/><stop offset="100%" stop-color="#662200"/>
+                  </radialGradient>
+                  <radialGradient id="eyeR" cx="35%" cy="35%" r="65%">
+                    <stop offset="0%" stop-color="#40e0ff"/><stop offset="55%" stop-color="#0099cc"/><stop offset="100%" stop-color="#003366"/>
+                  </radialGradient>
+                  <radialGradient id="bg2" cx="40%" cy="30%" r="70%">
+                    <stop offset="0%" stop-color="#d0d0e8"/><stop offset="100%" stop-color="#8888b8"/>
+                  </radialGradient>
+                  <filter id="glo"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                  <linearGradient id="antG" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#6c55f0"/><stop offset="100%" stop-color="#a090e0"/>
+                  </linearGradient>
+                </defs>
+                <!-- Antenna -->
+                <line x1="160" y1="50" x2="160" y2="18" stroke="url(#antG)" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="160" cy="13" r="9" fill="#6c55f0" filter="url(#glo)">
+                  <animate attributeName="r" values="9;13;9" dur="2s" repeatCount="indefinite"/>
+                  <animate attributeName="fill" values="#6c55f0;#22d3ee;#6c55f0" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <!-- Head -->
+                <ellipse cx="160" cy="118" rx="90" ry="84" fill="url(#hg)" stroke="#b0b0d0" stroke-width="1.5"/>
+                <ellipse cx="138" cy="90" rx="30" ry="17" fill="rgba(255,255,255,0.32)" transform="rotate(-20,138,90)"/>
+                <!-- Left eye (amber) -->
+                <circle cx="126" cy="110" r="26" fill="#111122" stroke="#443344" stroke-width="2"/>
+                <circle cx="126" cy="110" r="19" fill="url(#eyeL)" filter="url(#glo)"><animate attributeName="r" values="19;22;19" dur="3s" repeatCount="indefinite"/></circle>
+                <circle cx="126" cy="110" r="9" fill="#ff6600" opacity="0.9"/>
+                <circle cx="119" cy="104" r="5" fill="rgba(255,200,80,0.75)"/>
+                <!-- Right eye (cyan) -->
+                <circle cx="194" cy="110" r="26" fill="#111122" stroke="#334455" stroke-width="2"/>
+                <circle cx="194" cy="110" r="19" fill="url(#eyeR)" filter="url(#glo)"><animate attributeName="r" values="19;23;19" dur="2.5s" repeatCount="indefinite" begin="0.5s"/></circle>
+                <circle cx="194" cy="110" r="9" fill="#00aadd" opacity="0.9"/>
+                <circle cx="187" cy="104" r="5" fill="rgba(100,220,255,0.75)"/>
+                <!-- Smile -->
+                <path d="M 133 144 Q 160 166 187 144" stroke="#9090a8" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                <!-- Face dots -->
+                <circle cx="141" cy="152" r="3.5" fill="#cc8800" opacity="0.7"/>
+                <circle cx="160" cy="157" r="3.5" fill="#cc8800" opacity="0.7"/>
+                <circle cx="179" cy="152" r="3.5" fill="#cc8800" opacity="0.7"/>
+                <!-- Neck -->
+                <rect x="143" y="196" width="34" height="24" rx="7" fill="#b0b0cc" stroke="#9090bb" stroke-width="1"/>
+                <line x1="152" y1="200" x2="152" y2="216" stroke="#808099" stroke-width="3" stroke-linecap="round"/>
+                <line x1="168" y1="200" x2="168" y2="216" stroke="#808099" stroke-width="3" stroke-linecap="round"/>
+                <!-- Body -->
+                <rect x="76" y="218" width="168" height="120" rx="24" fill="url(#bg2)" stroke="#a0a0c0" stroke-width="1.5"/>
+                <rect x="92" y="226" width="74" height="22" rx="9" fill="rgba(255,255,255,0.22)"/>
+                <!-- Chest emblem -->
+                <rect x="116" y="248" width="88" height="56" rx="14" fill="rgba(108,85,240,0.2)" stroke="rgba(108,85,240,0.45)" stroke-width="1.5"/>
+                <text x="160" y="284" font-family="Arial" font-size="22" font-weight="900" fill="rgba(108,85,240,0.9)" text-anchor="middle" letter-spacing="3">JT</text>
+                <!-- Arms -->
+                <rect x="28" y="226" width="46" height="92" rx="21" fill="url(#bg2)" stroke="#a0a0c0" stroke-width="1.5"/>
+                <circle cx="51" cy="322" r="17" fill="#b0b0cc" stroke="#9090bb" stroke-width="1.5"/>
+                <rect x="246" y="226" width="46" height="92" rx="21" fill="url(#bg2)" stroke="#a0a0c0" stroke-width="1.5"/>
+                <!-- Glowing right arm -->
+                <circle cx="269" cy="314" r="12" fill="#22d3ee" opacity="0.75" filter="url(#glo)"><animate attributeName="opacity" values="0.75;1;0.75" dur="1.8s" repeatCount="indefinite"/></circle>
+                <!-- Legs -->
+                <rect x="106" y="334" width="46" height="44" rx="16" fill="url(#bg2)" stroke="#a0a0c0" stroke-width="1.5"/>
+                <rect x="168" y="334" width="46" height="44" rx="16" fill="url(#bg2)" stroke="#a0a0c0" stroke-width="1.5"/>
+                <!-- Feet -->
+                <ellipse cx="129" cy="376" rx="26" ry="10" fill="#9090b8" stroke="#7070a0" stroke-width="1"/>
+                <ellipse cx="191" cy="376" rx="26" ry="10" fill="#9090b8" stroke="#7070a0" stroke-width="1"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom service bar -->
+        <div class="hbb">
+          <a href="jmwhatsapp.html" class="hbb-item"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i>JMWhatsApp</a>
+          <a href="misschatra.html" class="hbb-item"><i class="fa-solid fa-robot" style="color:var(--brand-light)"></i>Miss Chatra AI</a>
+          <a href="autosave.html" class="hbb-item"><i class="fa-solid fa-cloud-arrow-up" style="color:var(--cyan)"></i>Contact Autosave</a>
+          <a href="#features" class="hbb-item"><i class="fa-solid fa-bolt" style="color:var(--amber)"></i>Our Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker">
+      <div class="ticker-in">
+        <span class="ti"><span class="ti-lbl">JMWHATSAPP</span><span class="ti-up">● Online</span></span><span class="ti-sep"></span>
+        <span class="ti"><span class="ti-lbl">MISS CHATRA</span><span class="ti-up">v16.4 Active</span></span><span class="ti-sep"></span>
+        <span class="ti"><span class="ti-lbl">AUTOSAVE</span><span class="ti-up">Syncing</span></span><span class="ti-sep"></span>
+        <span class="ti"><span class="ti-lbl">API LATENCY</span><span data-ping>28ms</span></span><span class="ti-sep"></span>
+        <span class="ti"><span class="ti-lbl">UPTIME</span><span class="ti-up" data-live="99.98" data-v="0.01" data-dec="2" data-suf="%">99.98%</span></span><span class="ti-sep"></span>
+        <span class="ti"><span class="ti-lbl">MESSAGES</span><span data-live="187420" data-v="200">187,420</span></span><span class="ti-sep"></span>
+        <span class="ti"><span class="ti-lbl">AI ENDPOINTS</span><span class="ti-up">12 Synced</span></span><span class="ti-sep"></span>
+        <span class="ti"><span class="ti-lbl">STATUS</span><span class="ti-up">All Systems Operational</span></span><span class="ti-sep"></span>
+      </div>
+    </div>
+
+    <!-- ══════════ ABOUT ══════════ -->
+    <section id="about" class="sec sec-alt">
+      <div class="sec-head"><div class="sec-eye">Who We Are</div>
+        <h2 class="sec-title">Engineering The Infrastructure<br>Behind <span class="gt">Modern Automation</span></h2>
+        <p class="sec-sub">JusticeTech System is a technology innovation lab building AI-driven automation, intelligent messaging infrastructure, and cloud-native software — production-grade systems real businesses depend on daily.</p>
+      </div>
+      <div class="grid-2 fade-u">
+        <!-- Terminal card -->
+        <div style="background:rgba(5,5,16,0.9);border:1px solid var(--border);border-radius:20px;overflow:hidden;backdrop-filter:blur(12px);">
+          <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border);background:rgba(20,20,56,0.6)">
+            <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57"></span>
+            <span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e"></span>
+            <span style="width:10px;height:10px;border-radius:50%;background:#28ca41"></span>
+            <span style="margin-left:auto;font-size:0.65rem;color:var(--text-3);font-family:'JetBrains Mono',monospace">justicetech@core:~ status</span>
+          </div>
+          <div style="padding:20px;font-family:'JetBrains Mono',monospace;font-size:0.75rem;line-height:1.9;min-height:280px">
+            <div><span style="color:var(--brand-light)">jts@core</span><span style="color:var(--text-3)">:~$</span> <span style="color:var(--text-1)">systemctl status --all</span></div>
+            <div><span style="color:var(--green)">●</span> <span style="color:var(--cyan)">ai_automation</span> <span style="color:var(--green)">active (running)</span></div>
+            <div><span style="color:var(--green)">●</span> <span style="color:#25D366">whatsapp_engine</span> <span style="color:var(--green)">active (running)</span></div>
+            <div><span style="color:var(--green)">●</span> <span style="color:var(--brand-light)">miss_chatra</span> <span style="color:var(--green)">active (running)</span></div>
+            <div><span style="color:var(--green)">●</span> <span style="color:var(--amber)">cloud_infra</span> <span style="color:var(--green)">active (running)</span></div>
+            <div>&nbsp;</div>
+            <div><span style="color:var(--brand-light)">jts@core</span><span style="color:var(--text-3)">:~$</span> <span style="color:var(--text-1)">cat mission.txt</span></div>
+            <div style="color:var(--text-2)">&gt; Engineer intelligent systems that</div>
+            <div style="color:var(--text-2)">&gt; remove repetitive work — at scale.</div>
+            <div>&nbsp;</div>
+            <div><span style="color:var(--brand-light)">jts@core</span><span style="color:var(--text-3)">:~$</span> <span style="animation:blink 1s steps(1) infinite;display:inline-block">▌</span></div>
+          </div>
+        </div>
+        <!-- Highlights -->
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px;display:flex;gap:14px;align-items:flex-start;backdrop-filter:blur(12px)">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--brand-dim);border:1px solid rgba(108,85,240,0.25);display:flex;align-items:center;justify-content:center;color:var(--brand-light);flex-shrink:0"><i class="fa-solid fa-brain"></i></div>
+            <div><div style="font-size:0.88rem;font-weight:700;color:var(--text-1);margin-bottom:4px">AI Solutions</div><div style="font-size:0.76rem;color:var(--text-2);line-height:1.5">Context-aware models wired directly into real product workflows for measurable impact.</div></div>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px;display:flex;gap:14px;align-items:flex-start;backdrop-filter:blur(12px)">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.22);display:flex;align-items:center;justify-content:center;color:var(--cyan);flex-shrink:0"><i class="fa-solid fa-bolt"></i></div>
+            <div><div style="font-size:0.88rem;font-weight:700;color:var(--text-1);margin-bottom:4px">Automation Services</div><div style="font-size:0.76rem;color:var(--text-2);line-height:1.5">Pipelines that eliminate manual, repetitive operations — reliably, every time.</div></div>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px;display:flex;gap:14px;align-items:flex-start;backdrop-filter:blur(12px)">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.22);display:flex;align-items:center;justify-content:center;color:var(--green);flex-shrink:0"><i class="fa-solid fa-code"></i></div>
+            <div><div style="font-size:0.88rem;font-weight:700;color:var(--text-1);margin-bottom:4px">Software Development</div><div style="font-size:0.76rem;color:var(--text-2);line-height:1.5">Full-stack engineering from architecture to cloud deployment — no shortcuts.</div></div>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px;display:flex;gap:14px;align-items:flex-start;backdrop-filter:blur(12px)">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.22);display:flex;align-items:center;justify-content:center;color:var(--amber);flex-shrink:0"><i class="fa-solid fa-cloud"></i></div>
+            <div><div style="font-size:0.88rem;font-weight:700;color:var(--text-1);margin-bottom:4px">Technology Innovation</div><div style="font-size:0.76rem;color:var(--text-2);line-height:1.5">Constant iteration on what enterprise software can be — ahead of the curve.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ FEATURES ══════════ -->
+    <section id="features" class="sec">
+      <div class="sec-head c">
+        <div class="sec-eye">Capabilities</div>
+        <h2 class="sec-title">Six Disciplines. <span class="gt">One Standard.</span></h2>
+        <p class="sec-sub">Every system we ship is held to the same production bar — secure, observable, and built to scale past day one.</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card fc-ai fade-u">
+          <div class="fc-icon-wrap"><i class="fa-solid fa-brain"></i></div>
+          <div class="fc-title">AI Automation</div>
+          <div class="fc-desc">Intelligent workflows that reduce manual labor and optimize business processes using context-aware language models and real AI pipelines.</div>
+          <div class="fc-tags"><span class="fc-tag">LLM</span><span class="fc-tag">NLP</span><span class="fc-tag">Workflow</span><span class="fc-tag">APIs</span></div>
+        </div>
+        <div class="feat-card fc-web fade-u d1">
+          <div class="fc-icon-wrap"><i class="fa-solid fa-code"></i></div>
+          <div class="fc-title">Web Development</div>
+          <div class="fc-desc">Fast, accessible, SEO-optimized web applications built with modern vanilla architecture — performance without unnecessary framework bloat.</div>
+          <div class="fc-tags"><span class="fc-tag">HTML5</span><span class="fc-tag">CSS3</span><span class="fc-tag">JavaScript</span></div>
+        </div>
+        <div class="feat-card fc-wa fade-u d2">
+          <div class="fc-icon-wrap"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="fc-title">WhatsApp Systems</div>
+          <div class="fc-desc">Advanced custom messaging engines and automated response systems built on a hardened Baileys infrastructure for enterprise-volume traffic.</div>
+          <div class="fc-tags"><span class="fc-tag">Baileys</span><span class="fc-tag">Node.js</span><span class="fc-tag">Realtime</span></div>
+        </div>
+        <div class="feat-card fc-bot fade-u">
+          <div class="fc-icon-wrap"><i class="fa-solid fa-robot"></i></div>
+          <div class="fc-title">Smart Applications</div>
+          <div class="fc-desc">Cross-platform intelligent bots and assistants that understand context across Telegram, WhatsApp, and web with persistent memory.</div>
+          <div class="fc-tags"><span class="fc-tag">Telethon</span><span class="fc-tag">Python</span><span class="fc-tag">AI</span></div>
+        </div>
+        <div class="feat-card fc-cloud fade-u d1">
+          <div class="fc-icon-wrap"><i class="fa-solid fa-cloud"></i></div>
+          <div class="fc-title">Cloud Services</div>
+          <div class="fc-desc">Scalable, secure infrastructure deployed via Pterodactyl — 99.98% uptime SLA with 24/7 observability and automatic failover.</div>
+          <div class="fc-tags"><span class="fc-tag">Pterodactyl</span><span class="fc-tag">BaaS</span><span class="fc-tag">SSL</span></div>
+        </div>
+        <div class="feat-card fc-data fade-u d2">
+          <div class="fc-icon-wrap"><i class="fa-solid fa-database"></i></div>
+          <div class="fc-title">Digital Solutions</div>
+          <div class="fc-desc">End-to-end digital products — from CRM sync and lead capture to analytics dashboards and automated broadcast systems.</div>
+          <div class="fc-tags"><span class="fc-tag">SQLite</span><span class="fc-tag">MySQL</span><span class="fc-tag">Sync</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ STATS ══════════ -->
+    <section id="stats" class="sec sec-alt">
+      <div class="sec-head c"><div class="sec-eye">By The Numbers</div>
+        <h2 class="sec-title">Trusted Across <span class="gt">Production Systems</span></h2>
+      </div>
+      <div class="stats-band zoom fade-u">
+        <div class="stat-c"><div class="stat-n"><span class="counter" data-target="150">0</span><span class="stat-a">+</span></div><div class="stat-lbl">Projects Completed</div><div class="stat-sub">across 3 product lines</div></div>
+        <div class="stat-c"><div class="stat-n"><span class="counter" data-target="50000">0</span><span class="stat-a">+</span></div><div class="stat-lbl">Active Users</div><div class="stat-sub">monthly engagement</div></div>
+        <div class="stat-c"><div class="stat-n"><span class="counter" data-target="16">0</span></div><div class="stat-lbl">Systems Built</div><div class="stat-sub">live in production</div></div>
+        <div class="stat-c"><div class="stat-n"><span class="counter" data-target="99">0</span><span class="stat-a">%</span></div><div class="stat-lbl">Client Satisfaction</div><div class="stat-sub">verified feedback</div></div>
+      </div>
+    </section>
+
+    <!-- ══════════ PROJECTS ══════════ -->
+    <section id="projects" class="sec">
+      <div class="sec-head c"><div class="sec-eye">Flagship Systems</div>
+        <h2 class="sec-title">Projects Built To <span class="gt">Run In Production</span></h2>
+        <p class="sec-sub">Hover any card to flip and see the full feature breakdown. Each project is actively maintained and deployed.</p>
+      </div>
+      <div class="proj-grid">
+        <div class="flip-card fade-u">
+          <div class="flip-in">
+            <div class="f-front">
+              <img src="images/jmwhatsapp-icon.png" alt="JMWhatsApp" class="f-img" style="object-position:center center">
+              <div class="f-overlay"></div>
+              <div class="f-flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Hover to flip</div>
+              <div class="f-front-body">
+                <div class="f-cat" style="color:#25D366">WhatsApp Mod</div>
+                <div class="f-name">JMWhatsApp Ultra</div>
+                <div class="f-desc">Ghost Mode, Anti-Delete, App Lock, and 20+ premium privacy features.</div>
+                <div class="f-techs"><span class="f-tech">Android</span><span class="f-tech">Mod</span><span class="f-tech">v41.0</span></div>
+              </div>
+            </div>
+            <div class="f-back">
+              <div class="fb-title">JMWhatsApp Ultra</div>
+              <div class="fb-desc">A fully-loaded WhatsApp mod for total privacy and control — free, actively maintained, and packed with features standard WhatsApp will never have.</div>
+              <div class="fb-feats">
+                <div class="fb-feat">Ghost Mode & hide online status</div>
+                <div class="fb-feat">Anti-Delete messages & status</div>
+                <div class="fb-feat">Fingerprint / PIN app lock</div>
+                <div class="fb-feat">50-minute status videos</div>
+                <div class="fb-feat">AI sticker maker built-in</div>
+              </div>
+              <a href="jmwhatsapp.html" class="fb-btn">Visit Project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card fade-u d1">
+          <div class="flip-in">
+            <div class="f-front">
+              <img src="images/misschatra.jpg" alt="Miss Chatra" class="f-img" style="object-position:center 15%">
+              <div class="f-overlay"></div>
+              <div class="f-flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Hover to flip</div>
+              <div class="f-front-body">
+                <div class="f-cat" style="color:var(--brand-light)">AI Assistant</div>
+                <div class="f-name">Miss Chatra</div>
+                <div class="f-desc">Context-aware AI assistant across WhatsApp and Telegram — 12+ synced AI endpoints.</div>
+                <div class="f-techs"><span class="f-tech">Python</span><span class="f-tech">Telethon</span><span class="f-tech">LLM</span></div>
+              </div>
+            </div>
+            <div class="f-back">
+              <div class="fb-title">Miss Chatra</div>
+              <div class="fb-desc">Multi-lingual NLP engine with context retention, content scheduling, and analytics across WhatsApp and Telegram.</div>
+              <div class="fb-feats">
+                <div class="fb-feat">12+ synced AI endpoints</div>
+                <div class="fb-feat">Multi-lingual NLP engine</div>
+                <div class="fb-feat">Post scheduling &amp; analytics</div>
+                <div class="fb-feat">NSFW detection built-in</div>
+                <div class="fb-feat">6-hour auto-update cycle</div>
+              </div>
+              <a href="misschatra.html" class="fb-btn">Visit Project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card fade-u d2">
+          <div class="flip-in">
+            <div class="f-front">
+              <img src="images/autosave.jpg" alt="Contact Autosave" class="f-img">
+              <div class="f-overlay"></div>
+              <div class="f-flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Hover to flip</div>
+              <div class="f-front-body">
+                <div class="f-cat" style="color:var(--cyan)">Automation · CRM Sync</div>
+                <div class="f-name">Contact Autosave</div>
+                <div class="f-desc">Intelligent CRM sync that automatically parses and backs up contacts in real time.</div>
+                <div class="f-techs"><span class="f-tech">Node.js</span><span class="f-tech">Cloud</span><span class="f-tech">SQLite</span></div>
+              </div>
+            </div>
+            <div class="f-back">
+              <div class="fb-title">Contact Autosave</div>
+              <div class="fb-desc">Automatically parse, organize, and sync leads across every device — zero manual data entry, ever.</div>
+              <div class="fb-feats">
+                <div class="fb-feat">Real-time bidirectional sync</div>
+                <div class="fb-feat">Automated cloud backup</div>
+                <div class="fb-feat">Direct-to-DM broadcast</div>
+                <div class="fb-feat">Payment approval flow</div>
+                <div class="fb-feat">Credit-based provisioning</div>
+              </div>
+              <a href="autosave.html" class="fb-btn">Visit Project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card fade-u">
+          <div class="flip-in">
+            <div class="f-front">
+              <img src="images/groupfinder-logo.jpg" alt="GroupFinder" class="f-img">
+              <div class="f-overlay"></div>
+              <div class="f-flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Hover to flip</div>
+              <div class="f-front-body">
+                <div class="f-cat" style="color:#a78bfa">Community Discovery</div>
+                <div class="f-name">GroupFinder</div>
+                <div class="f-desc">AI-powered Telegram group discovery with health scoring and XP-driven ranks.</div>
+                <div class="f-techs"><span class="f-tech">Python</span><span class="f-tech">AI Matching</span><span class="f-tech">v66</span></div>
+              </div>
+            </div>
+            <div class="f-back">
+              <div class="fb-title">GroupFinder</div>
+              <div class="fb-desc">Onboarding-based AI match scoring, live group health algorithm, tournaments, and 25+ community-growth features.</div>
+              <div class="fb-feats">
+                <div class="fb-feat">AI compatibility match scoring</div>
+                <div class="fb-feat">Live group health score</div>
+                <div class="fb-feat">10-tier XP rank system</div>
+                <div class="fb-feat">Monthly group tournaments</div>
+                <div class="fb-feat">Scam link scanner built-in</div>
+              </div>
+              <a href="groupfinder.html" class="fb-btn">Visit Project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card fade-u">
+          <div class="flip-in">
+            <div class="f-front">
+              <img src="images/ultragatex-logo.jpg" alt="UltraGateX" class="f-img">
+              <div class="f-overlay"></div>
+              <div class="f-flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Hover to flip</div>
+              <div class="f-front-body">
+                <div class="f-cat" style="color:#a78bfa">License Management</div>
+                <div class="f-name">UltraGateX</div>
+                <div class="f-desc">Telegram license bot with QR delivery, fraud detection, and self-updating architecture.</div>
+                <div class="f-techs"><span class="f-tech">Python</span><span class="f-tech">Telegram</span><span class="f-tech">v3.5</span></div>
+              </div>
+            </div>
+            <div class="f-back">
+              <div class="fb-title">UltraGateX</div>
+              <div class="fb-desc">The most advanced license management bot for JMWhatsApp Ultra — plugin-based, self-updating, with real fraud detection.</div>
+              <div class="fb-feats">
+                <div class="fb-feat">Smart license keys with QR codes</div>
+                <div class="fb-feat">Geographic fraud detection</div>
+                <div class="fb-feat">Honeypot license traps</div>
+                <div class="fb-feat">Self-updating from GitHub</div>
+                <div class="fb-feat">Multi-language support</div>
+              </div>
+              <a href="ultragatex.html" class="fb-btn">Visit Project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card fade-u d1">
+          <div class="flip-in">
+            <div class="f-front">
+              <img src="images/obfuscationary-logo.jpg" alt="Obfuscationary" class="f-img">
+              <div class="f-overlay"></div>
+              <div class="f-flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Hover to flip</div>
+              <div class="f-front-body">
+                <div class="f-cat" style="color:#f87171">File Encryption</div>
+                <div class="f-name">Obfuscationary</div>
+                <div class="f-desc">Military-grade file & APK encryption bot with 4 cipher engines and security scanning.</div>
+                <div class="f-techs"><span class="f-tech">AES-256</span><span class="f-tech">RSA-4096</span><span class="f-tech">v4.0.5</span></div>
+              </div>
+            </div>
+            <div class="f-back">
+              <div class="fb-title">Obfuscationary</div>
+              <div class="fb-desc">Four encryption engines including Quantum-mode Argon2id, plus a full APK security scanner and self-destruct mode.</div>
+              <div class="fb-feats">
+                <div class="fb-feat">AES-256-GCM & ChaCha20</div>
+                <div class="fb-feat">Quantum mode (Argon2id)</div>
+                <div class="fb-feat">RSA-4096 key exchange</div>
+                <div class="fb-feat">Built-in APK security scanner</div>
+                <div class="fb-feat">Self-destruct file mode</div>
+              </div>
+              <a href="obfuscationary.html" class="fb-btn">Visit Project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card fade-u d2">
+          <div class="flip-in">
+            <div class="f-front">
+              <img src="images/liveupdaterx-logo.jpg" alt="LiveUpdaterX" class="f-img">
+              <div class="f-overlay"></div>
+              <div class="f-flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Hover to flip</div>
+              <div class="f-front-body">
+                <div class="f-cat" style="color:#38bdf8">DevOps · Deployment</div>
+                <div class="f-name">LiveUpdaterX</div>
+                <div class="f-desc">Multi-repo GitHub update bot with per-user tracking and ZIP push deployment.</div>
+                <div class="f-techs"><span class="f-tech">Python</span><span class="f-tech">GitHub API</span><span class="f-tech">v2.9</span></div>
+              </div>
+            </div>
+            <div class="f-back">
+              <div class="fb-title">LiveUpdaterX</div>
+              <div class="fb-desc">Manages GitHub-based app updates across multiple repositories simultaneously with full rollout analytics.</div>
+              <div class="fb-feats">
+                <div class="fb-feat">Multi-repo management</div>
+                <div class="fb-feat">Per-user repo tracking</div>
+                <div class="fb-feat">ZIP push deployment</div>
+                <div class="fb-feat">Rollout analytics</div>
+                <div class="fb-feat">Safe versioned rollback</div>
+              </div>
+              <a href="liveupdaterx.html" class="fb-btn">Visit Project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card fade-u">
+          <div class="flip-in">
+            <div class="f-front">
+              <img src="images/pstore-logo.jpg" alt="PStore" class="f-img">
+              <div class="f-overlay"></div>
+              <div class="f-flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Hover to flip</div>
+              <div class="f-front-body">
+                <div class="f-cat" style="color:#4ade80">Digital Commerce</div>
+                <div class="f-name">PStore</div>
+                <div class="f-desc">Digital product delivery bot with secure links, referrals, and seller analytics.</div>
+                <div class="f-techs"><span class="f-tech">Python</span><span class="f-tech">Aiogram</span><span class="f-tech">Telegram</span></div>
+              </div>
+            </div>
+            <div class="f-back">
+              <div class="fb-title">PStore</div>
+              <div class="fb-desc">A complete digital product store bot — secure one-time links, referral program, and full seller analytics dashboard.</div>
+              <div class="fb-feats">
+                <div class="fb-feat">Secure expiring delivery links</div>
+                <div class="fb-feat">Bundle product packaging</div>
+                <div class="fb-feat">Seller analytics dashboard</div>
+                <div class="fb-feat">Built-in referral program</div>
+                <div class="fb-feat">Admin broadcast system</div>
+              </div>
+              <a href="pstore.html" class="fb-btn">Visit Project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card fade-u d1">
+          <div class="flip-in">
+            <div class="f-front">
+              <img src="images/buypayx-logo.jpg" alt="BuyPayX" class="f-img">
+              <div class="f-overlay"></div>
+              <div class="f-flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Hover to flip</div>
+              <div class="f-front-body">
+                <div class="f-cat" style="color:#60a5fa">Marketplace · Escrow</div>
+                <div class="f-name">BuyPayX</div>
+                <div class="f-desc">Full marketplace bot with escrow payments and 22 built-in commerce features.</div>
+                <div class="f-techs"><span class="f-tech">Python</span><span class="f-tech">MySQL</span><span class="f-tech">v26</span></div>
+              </div>
+            </div>
+            <div class="f-back">
+              <div class="fb-title">BuyPayX</div>
+              <div class="fb-desc">Escrow-protected peer-to-peer marketplace with verified sellers, wishlists, coupons, and a full dispute resolution system.</div>
+              <div class="fb-feats">
+                <div class="fb-feat">Escrow-protected payments</div>
+                <div class="fb-feat">Verified seller badges</div>
+                <div class="fb-feat">Wishlists & price alerts</div>
+                <div class="fb-feat">Coupon & referral system</div>
+                <div class="fb-feat">22 built-in features total</div>
+              </div>
+              <a href="buypayx.html" class="fb-btn">Visit Project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card fade-u d2">
+          <div class="flip-in">
+            <div class="f-front">
+              <img src="images/baas-logo.jpg" alt="BaaS System" class="f-img">
+              <div class="f-overlay"></div>
+              <div class="f-flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Hover to flip</div>
+              <div class="f-front-body">
+                <div class="f-cat" style="color:#fb923c">Cloud Infrastructure</div>
+                <div class="f-name">BaaS System</div>
+                <div class="f-desc">Provision Pterodactyl hosting servers directly from Telegram in seconds.</div>
+                <div class="f-techs"><span class="f-tech">Python</span><span class="f-tech">Pterodactyl</span><span class="f-tech">Cloud</span></div>
+              </div>
+            </div>
+            <div class="f-back">
+              <div class="fb-title">BaaS System</div>
+              <div class="fb-desc">Bot-as-a-Service — instant Node.js and Python server provisioning with a credit-based economy and VIP tiers.</div>
+              <div class="fb-feats">
+                <div class="fb-feat">Instant server provisioning</div>
+                <div class="fb-feat">Credit-based economy</div>
+                <div class="fb-feat">VIP server tiers</div>
+                <div class="fb-feat">One-command backup/restore</div>
+                <div class="fb-feat">Isolated environments</div>
+              </div>
+              <a href="baas.html" class="fb-btn">Visit Project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ LIVE METRICS ══════════ -->
+    <section class="sec sec-alt">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px">
+        <div><div class="sec-eye">Operations Center</div><h2 class="sec-title" style="margin-bottom:0">Real-Time System <span class="gt">Telemetry</span></h2></div>
+        <div class="live-badge"><span class="l-dot"></span>LIVE</div>
+      </div>
+      <div class="metrics-grid fade-u">
+        <div class="metric-card">
+          <div class="mc-head"><div><div class="mc-title">Platform Throughput</div><div class="mc-sub">Requests / hour — last 12h</div></div><span style="font-size:0.7rem;font-family:'JetBrains Mono',monospace;color:var(--green);font-weight:700">+18.4%</span></div>
+          <div class="chart-wrap"><canvas id="chart-main"></canvas></div>
+          <div style="display:flex;gap:16px;padding:0 20px 14px;font-size:0.65rem;font-family:'JetBrains Mono',monospace;color:var(--text-3)">
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:2px;background:#6c55f0;display:inline-block;border-radius:2px"></span>Platform requests</span>
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:2px;background:#22d3ee;display:inline-block;border-radius:2px"></span>AI calls</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="metric-card"><div class="msc"><div class="msc-label">Active Sessions</div><div class="msc-val" data-live="2840" data-v="60">2,840</div><div class="msc-chg p"><i class="fa-solid fa-arrow-up"></i> 4.2% from yesterday</div><div class="msc-bar"><div class="msc-fill" data-w="82%" style="width:0"></div></div></div></div>
+          <div class="metric-card"><div class="msc"><div class="msc-label">Avg Response Time</div><div class="msc-val" data-live="142" data-v="15" data-suf="ms">142ms</div><div class="msc-chg p"><i class="fa-solid fa-arrow-down"></i> 8.1% faster</div><div class="msc-bar"><div class="msc-fill" data-w="60%" style="width:0;background:linear-gradient(90deg,var(--cyan),#06b6d4)"></div></div></div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="metric-card"><div class="msc"><div class="msc-label">Messages Routed</div><div class="msc-val" data-live="187420" data-v="200">187,420</div><div class="msc-chg p"><i class="fa-solid fa-arrow-up"></i> 12.7% this week</div><div class="msc-bar"><div class="msc-fill" data-w="91%" style="width:0;background:linear-gradient(90deg,var(--green),#4ade80)"></div></div></div></div>
+          <div class="metric-card"><div class="msc"><div class="msc-label">Error Rate</div><div class="msc-val" data-live="0.04" data-v="0.01" data-dec="2" data-suf="%">0.04%</div><div class="msc-chg p"><i class="fa-solid fa-arrow-down"></i> within SLA</div><div class="msc-bar"><div class="msc-fill" data-w="5%" style="width:0;background:linear-gradient(90deg,var(--amber),#fbbf24)"></div></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ TECH STACK ══════════ -->
+    <section class="sec">
+      <div class="sec-head c"><div class="sec-eye">Engineering Stack</div><h2 class="sec-title">Tools We <span class="gt">Trust In Production</span></h2></div>
+      <div class="tech-grid zoom fade-u">
+        <div class="tech-item"><div class="tech-ic"><i class="fa-brands fa-node-js" style="color:#68a063"></i></div><div class="tech-lbl">Node.js</div></div>
+        <div class="tech-item"><div class="tech-ic"><i class="fa-brands fa-python" style="color:#3776ab"></i></div><div class="tech-lbl">Python</div></div>
+        <div class="tech-item"><div class="tech-ic"><i class="fa-brands fa-js" style="color:#f7df1e"></i></div><div class="tech-lbl">JavaScript</div></div>
+        <div class="tech-item"><div class="tech-ic"><i class="fa-brands fa-html5" style="color:#e34f26"></i></div><div class="tech-lbl">HTML5</div></div>
+        <div class="tech-item"><div class="tech-ic"><i class="fa-brands fa-css3-alt" style="color:#1572b6"></i></div><div class="tech-lbl">CSS3</div></div>
+        <div class="tech-item"><div class="tech-ic"><i class="fa-solid fa-database" style="color:#22d3ee"></i></div><div class="tech-lbl">SQLite</div></div>
+        <div class="tech-item"><div class="tech-ic"><i class="fa-brands fa-whatsapp" style="color:#25d366"></i></div><div class="tech-lbl">Baileys</div></div>
+        <div class="tech-item"><div class="tech-ic"><i class="fa-brands fa-telegram" style="color:#26a5e4"></i></div><div class="tech-lbl">Telethon</div></div>
+        <div class="tech-item"><div class="tech-ic"><i class="fa-solid fa-server" style="color:#8b5cf6"></i></div><div class="tech-lbl">Pterodactyl</div></div>
+        <div class="tech-item"><div class="tech-ic"><i class="fa-brands fa-github" style="color:#f0f0ff"></i></div><div class="tech-lbl">GitHub</div></div>
+        <div class="tech-item"><div class="tech-ic"><i class="fa-solid fa-brain" style="color:#a78bfa"></i></div><div class="tech-lbl">LLM APIs</div></div>
+        <div class="tech-item"><div class="tech-ic"><i class="fa-solid fa-shield-halved" style="color:#22c55e"></i></div><div class="tech-lbl">SSL/TLS</div></div>
+      </div>
+    </section>
+
+    <!-- ══════════ DEPENDENCY GRAPH ══════════ -->
+    <section class="sec sec-alt">
+      <div class="sec-head c"><div class="sec-eye">System Architecture</div><h2 class="sec-title">How Everything <span class="gt">Connects</span></h2><p class="sec-sub">Drag any node to explore how our systems interconnect.</p></div>
+      <canvas id="dep-graph-canvas" class="fade-u"></canvas>
+    </section>
+
+    <!-- ══════════ AI CHAT DEMO ══════════ -->
+    <section class="sec">
+      <div class="sec-head c"><div class="sec-eye">Try It Live</div><h2 class="sec-title">Chat With <span class="gt">Miss Chatra Now</span></h2><p class="sec-sub">A live, interactive demo — ask about pricing, our products, or just say hi.</p></div>
+      <div class="ai-demo-section fade-u">
+        <div class="ai-demo-header">
+          <div class="ai-demo-title"><i class="fa-solid fa-robot" style="color:var(--brand-light)"></i> Miss Chatra — Live Demo</div>
+          <div class="ai-demo-powered"><span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block"></span> 12 endpoints synced</div>
+        </div>
+        <div class="ai-demo-body" id="ai-demo-body">
+          <div class="demo-msg bot">Hi! I'm Miss Chatra. Ask me anything about JusticeTech's products, pricing, or just say hello 👋</div>
+        </div>
+        <div class="ai-demo-suggestions">
+          <span class="ai-demo-suggest">Tell me about pricing</span>
+          <span class="ai-demo-suggest">What is JMWhatsApp?</span>
+          <span class="ai-demo-suggest">How does Autosave work?</span>
+        </div>
+        <div class="ai-demo-footer">
+          <input type="text" class="ai-demo-input" id="ai-demo-input" placeholder="Type your message...">
+          <button class="ai-demo-send" id="ai-demo-send"><i class="fa-solid fa-paper-plane"></i> Send</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ COOKIE-FREE ANALYTICS ══════════ -->
+    <section class="sec sec-alt">
+      <div class="sec-head c"><div class="sec-eye">Full Transparency</div><h2 class="sec-title">Public Site <span class="gt">Analytics</span></h2><p class="sec-sub">We track zero cookies — everything here is derived from your local session only.</p></div>
+      <div class="analytics-grid fade-u" style="max-width:700px;margin:0 auto">
+        <div class="analytics-metric"><div class="analytics-val" id="analytics-total">0</div><div class="analytics-lbl">YOUR PAGE VIEWS</div></div>
+        <div class="analytics-metric"><div class="analytics-val" id="analytics-session">1</div><div class="analytics-lbl">YOUR SESSIONS</div></div>
+        <div class="analytics-metric"><div class="analytics-val" id="analytics-top">—</div><div class="analytics-lbl">YOUR TOP PAGE</div></div>
+        <div class="analytics-metric"><div class="analytics-val"><i class="fa-solid fa-shield-halved" style="color:var(--green);font-size:1.2rem"></i></div><div class="analytics-lbl">ZERO COOKIES</div></div>
+      </div>
+    </section>
+
+    <!-- ══════════ TESTIMONIALS ══════════ -->
+    <section id="testimonials" class="sec sec-alt">
+      <div class="sec-head c"><div class="sec-eye">Client Feedback</div><h2 class="sec-title">What Teams Say <span class="gt">Working With Us</span></h2></div>
+      <div class="testimonials-wrap fade-u">
+        <div class="test-track">
+          <div class="test-card"><div class="tc-stars">★★★★★</div><p class="tc-q">"JMWhatsApp transformed how our support team handles client messages. The automated routing alone saved us 15 hours a week. Genuinely enterprise-grade."</p><div class="tc-auth"><div class="tc-av">AO</div><div><div class="tc-nm">Adaeze Okonkwo</div><div class="tc-rl">Operations Lead, RetailHub NG</div></div></div></div>
+          <div class="test-card"><div class="tc-stars">★★★★★</div><p class="tc-q">"Miss Chatra answers customer questions faster than half our junior support staff. Multi-lingual, context-aware, and always accurate. Genuinely impressive."</p><div class="tc-auth"><div class="tc-av">DI</div><div><div class="tc-nm">David Ibe</div><div class="tc-rl">Founder, ShopFlow</div></div></div></div>
+          <div class="test-card"><div class="tc-stars">★★★★★</div><p class="tc-q">"We stopped losing leads the day we deployed Contact Autosave. Every number gets captured, tagged, and backed up automatically — zero missed leads."</p><div class="tc-auth"><div class="tc-av">CN</div><div><div class="tc-nm">Chiamaka Nwosu</div><div class="tc-rl">Growth Manager, Lagos Realty Group</div></div></div></div>
+          <div class="test-card"><div class="tc-stars">★★★★★</div><p class="tc-q">"The level of polish on these systems doesn't feel like a small studio's work. Stable, fast, and they ship fixes within hours not days."</p><div class="tc-auth"><div class="tc-av">TF</div><div><div class="tc-nm">Tunde Fashola</div><div class="tc-rl">CTO, Vexel Logistics</div></div></div></div>
+        </div>
+        <div class="t-ctrl">
+          <button class="t-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+          <div class="t-dots"></div>
+          <button class="t-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ FAQ ══════════ -->
+    <section id="faq" class="sec">
+      <div class="faq-layout">
+        <div class="fade-l">
+          <div class="sec-eye">Support</div>
+          <h2 class="sec-title">Common <span class="gt">Questions</span></h2>
+          <p class="sec-sub" style="margin-bottom:24px">Can't find what you're looking for? Reach out and we'll reply within 24 hours.</p>
+          <a href="#contact" class="btn btn-o"><i class="fa-solid fa-envelope"></i> Ask a Question</a>
+        </div>
+        <div class="fade-r">
+          <div class="acc-item on"><button class="acc-trig">What technologies does JusticeTech System use?<span class="acc-ic"><i class="fa-solid fa-plus"></i></span></button><div class="acc-body on"><div class="acc-cnt">We build on modern stacks — HTML5, CSS3, and ES6 JavaScript on the frontend; Node.js and Python backends; Baileys for WhatsApp; Telethon for Telegram; and Pterodactyl for cloud deployment.</div></div></div>
+          <div class="acc-item"><button class="acc-trig">Is JusticeTech scalable for larger teams?<span class="acc-ic"><i class="fa-solid fa-plus"></i></span></button><div class="acc-body"><div class="acc-cnt">Absolutely. Every system is built enterprise-first — credit-based provisioning, real-time sync, and horizontal scaling. It grows seamlessly with your user base without any rearchitecting.</div></div></div>
+          <div class="acc-item"><button class="acc-trig">Can I deploy JMWhatsApp on my own server?<span class="acc-ic"><i class="fa-solid fa-plus"></i></span></button><div class="acc-body"><div class="acc-cnt">Yes. JMWhatsApp ships with full deployment documentation and supports self-hosted Pterodactyl environments with guided setup and automatic update checks every 6 hours.</div></div></div>
+          <div class="acc-item"><button class="acc-trig">How does Miss Chatra handle multiple languages?<span class="acc-ic"><i class="fa-solid fa-plus"></i></span></button><div class="acc-body"><div class="acc-cnt">Miss Chatra runs on a multi-lingual NLP pipeline synced across 12+ AI endpoints. It automatically detects and responds in the user's language with consistent context retention between messages.</div></div></div>
+          <div class="acc-item"><button class="acc-trig">What support is offered after launch?<span class="acc-ic"><i class="fa-solid fa-plus"></i></span></button><div class="acc-body"><div class="acc-cnt">All deployments include 24/7 system monitoring, rapid bug-fix turnaround (often same-day), and direct access to our engineering team for critical production issues.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ NEWSLETTER ══════════ -->
+    <section class="sec sec-alt">
+      <div class="nl-box fade-u">
+        <div class="nl-l"><div class="nl-title">Get Release Notes First</div><div class="nl-sub">Product updates, new features, and engineering deep-dives — monthly. No spam, ever.</div></div>
+        <div class="nl-r">
+          <form id="nl-form" class="nl-form">
+            <input type="email" class="nl-inp" placeholder="you@company.com" required>
+            <button type="submit" class="nl-btn"><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+          </form>
+          <div class="nl-fine">By subscribing you agree to our <a href="#">Privacy Policy</a>. Unsubscribe anytime.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ CONTACT ══════════ -->
+    <section id="contact" class="sec">
+      <div class="sec-head c"><div class="sec-eye">Get In Touch</div>
+        <h2 class="sec-title">Let's Build Something <span class="gt">Production-Grade</span></h2>
+        <p class="sec-sub">Tell us about your project. We respond within one business day, every time.</p>
+      </div>
+      <div class="contact-layout">
+        <div class="fade-l">
+          <div class="ci"><div class="ci-ico"><i class="fa-solid fa-envelope"></i></div><div><div class="ci-lbl">Email</div><div class="ci-val">hello@justicetechsystem.space</div></div></div>
+          <div class="ci"><div class="ci-ico"><i class="fa-brands fa-whatsapp"></i></div><div><div class="ci-lbl">WhatsApp</div><div class="ci-val">Direct line — response under 1 hour</div></div></div>
+          <div class="ci"><div class="ci-ico"><i class="fa-solid fa-location-dot"></i></div><div><div class="ci-lbl">Location</div><div class="ci-val">Nigeria — Remote-first team</div></div></div>
+          <div class="ci"><div class="ci-ico"><i class="fa-solid fa-clock"></i></div><div><div class="ci-lbl">Response Time</div><div class="ci-val">Within 24 hours, every time</div></div></div>
+          <div class="soc-row">
+            <a href="#" class="soc-btn"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="soc-btn"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="soc-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="soc-btn"><i class="fa-brands fa-telegram"></i></a>
+          </div>
+        </div>
+        <form id="contact-form" class="form-wrap fade-r">
+          <div class="form-row">
+            <div class="form-grp"><label class="form-lbl">Full Name</label><input type="text" class="form-inp" placeholder="Jane Doe" required></div>
+            <div class="form-grp"><label class="form-lbl">Email Address</label><input type="email" class="form-inp" placeholder="jane@company.com" required></div>
+          </div>
+          <div class="form-grp"><label class="form-lbl">Subject</label><input type="text" class="form-inp" placeholder="Project inquiry" required></div>
+          <div class="form-grp"><label class="form-lbl">Message</label><textarea class="form-inp" placeholder="Tell us what you're building..." required></textarea></div>
+          <button type="submit" class="btn btn-p btn-full"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+    </section>
+
+  </div><!-- end .page -->
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo-row"><img src="images/logo.jpg" alt="" class="foot-logo-img"><div class="foot-logo-name">JusticeTech <span>System</span></div></div>
+        <p class="foot-desc">Engineering AI automation, messaging infrastructure, and cloud-native software for the modern enterprise — from Nigeria, for the world.</p>
+        <div class="f-badges"><span class="f-badge"><span class="f-bdot" style="background:var(--green)"></span>All Systems Operational</span><span class="f-badge"><span class="f-bdot" style="background:var(--cyan)"></span>SSL Secured</span></div>
+      </div>
+      <div><div class="foot-col-title">Navigate</div><a href="index.html" class="foot-link">Home</a><a href="#about" class="foot-link">About</a><a href="#features" class="foot-link">Services</a><a href="#contact" class="foot-link">Contact</a></div>
+      <div><div class="foot-col-title">Projects</div><a href="jmwhatsapp.html" class="foot-link">JMWhatsApp</a><a href="misschatra.html" class="foot-link">Miss Chatra</a><a href="autosave.html" class="foot-link">Contact Autosave</a></div>
+      <div><div class="foot-col-title">Connect</div><a href="#" class="foot-link">Twitter / X</a><a href="#" class="foot-link">GitHub</a><a href="#" class="foot-link">LinkedIn</a><a href="#" class="foot-link">Telegram</a></div>
+    </div>
+    <div class="foot-bottom"><div class="foot-copy">&copy; <span data-year></span> JusticeTech System. All rights reserved.</div><div class="foot-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div></div>
+  </footer>
+
+</div><!-- end #main -->
+</div><!-- end .shell -->
+
+<a href="#contact" id="float-chat"><span class="fc-live"></span>Chat With Us</a>
+<button id="btt" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<div id="toast-wrap"></div>
+
+<script src="js/script.js"></script>
+<script src="js/features.js"></script>
+</body>
+</html>

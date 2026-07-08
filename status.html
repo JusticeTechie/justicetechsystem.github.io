@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>System Status — JusticeTech System</title>
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#6c55f0">
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/features.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<canvas id="bg-canvas"></canvas><div class="bg-orb bg-orb-1"></div><div class="bg-orb bg-orb-2"></div><div class="bg-orb bg-orb-3"></div><div class="tech-overlay"></div>
+<div class="cursor-dot"></div><div class="cursor-ring"></div>
+<div id="loader"><div class="ld-logo"><img src="images/logo.jpg" class="ld-logo-img" alt=""><div class="ld-name">JusticeTech <span>System</span></div></div><div class="ld-bar"><div class="ld-fill"></div></div><div class="ld-tag">CHECKING SYSTEMS...</div></div>
+<div id="scroll-bar"></div>
+<div id="search-ov"><div class="s-box"><div class="s-top"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="s-inp" class="s-inp" placeholder="Search..."><button id="s-esc" class="s-esc">ESC</button></div><div id="s-results" class="s-results"></div></div></div>
+<div id="cmd-palette"><div class="cmd-box"><div class="cmd-header"><i class="fa-solid fa-magnifying-glass cmd-icon"></i><input type="text" id="cmd-input" class="cmd-input" placeholder="Search commands..."><span class="cmd-shortcut">ESC</span></div><div id="cmd-results" class="cmd-results"></div><div class="cmd-footer"><span class="cmd-footer-key"><kbd>↑↓</kbd> navigate</span><span class="cmd-footer-key"><kbd>↵</kbd> select</span></div></div></div>
+<div id="ach-toast" class="achievement-toast"><div class="ach-icon" id="ach-icon">🏆</div><div><div class="ach-badge">Achievement Unlocked</div><div class="ach-title" id="ach-title"></div><div class="ach-desc" id="ach-desc"></div></div><div class="ach-points" id="ach-pts"></div></div>
+<div id="konami-overlay" class="konami-overlay"><canvas id="konami-canvas" class="konami-matrix"></canvas><div class="konami-content"><div class="konami-title">JUSTICE CODE ACTIVATED</div><div class="konami-sub">Use code <strong style="color:var(--cyan)">KONAMI30</strong> for 30 days free</div><button class="konami-close" id="konami-close">Close</button></div></div>
+
+<div class="shell">
+<aside id="sidebar">
+  <div class="sb-profile"><img src="images/logo.jpg" alt="" class="sb-logo"><div><div class="sb-name">JusticeTech System</div><div class="sb-status">Monitoring Active</div></div></div>
+  <nav class="sb-nav">
+    <a href="index.html" class="sb-link"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+    <a href="pricing.html" class="sb-link"><i class="fa-solid fa-tag"></i>Pricing</a>
+    <a href="status.html" class="sb-link active"><i class="fa-solid fa-circle-dot"></i>Status<span class="sb-badge" style="background:var(--green)">Live</span></a>
+    <a href="changelog.html" class="sb-link"><i class="fa-solid fa-clock-rotate-left"></i>Changelog</a>
+    <a href="docs.html" class="sb-link"><i class="fa-solid fa-book"></i>Docs</a>
+            <div class="sb-label">Projects</div>
+    <a href="jmwhatsapp.html" class="sb-link"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i>JMWhatsApp<span class="sb-badge">v41</span></a>
+    <a href="misschatra.html" class="sb-link"><i class="fa-solid fa-robot" style="color:var(--brand-light)"></i>Miss Chatra<span class="sb-badge">v16</span></a>
+    <a href="autosave.html" class="sb-link"><i class="fa-solid fa-cloud-arrow-up" style="color:var(--cyan)"></i>Autosave</a>
+    <a href="groupfinder.html" class="sb-link"><i class="fa-solid fa-magnifying-glass" style="color:#a78bfa"></i>GroupFinder<span class="sb-badge">v66</span></a>
+    <a href="ultragatex.html" class="sb-link"><i class="fa-solid fa-shield-halved" style="color:#a78bfa"></i>UltraGateX</a>
+    <a href="obfuscationary.html" class="sb-link"><i class="fa-solid fa-user-secret" style="color:#f87171"></i>Obfuscationary</a>
+    <a href="liveupdaterx.html" class="sb-link"><i class="fa-solid fa-arrows-rotate" style="color:#38bdf8"></i>LiveUpdaterX</a>
+    <a href="pstore.html" class="sb-link"><i class="fa-solid fa-store" style="color:#4ade80"></i>PStore</a>
+    <a href="buypayx.html" class="sb-link"><i class="fa-solid fa-cart-shopping" style="color:#60a5fa"></i>BuyPayX</a>
+    <a href="baas.html" class="sb-link"><i class="fa-solid fa-server" style="color:#fb923c"></i>BaaS System</a>
+    <div class="sb-label">More</div>
+    <a href="team.html" class="sb-link"><i class="fa-solid fa-users"></i>Team</a>
+    <a href="showcase.html" class="sb-link"><i class="fa-solid fa-trophy"></i>Showcase</a>
+    <a href="index.html#contact" class="sb-link"><i class="fa-solid fa-envelope"></i>Contact</a>
+  </nav>
+  <div class="site-progress">
+    <div class="site-progress-label"><span>Your Progress</span><span id="progress-pct">0%</span></div>
+    <div class="site-progress-bar"><div class="site-progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+  <div id="trophy-case" class="trophy-case"></div>
+  <div class="sb-promo"><div class="sb-promo-logo"><img src="images/logo.jpg" alt="">JusticeTech</div><div class="sb-promo-text">99.98% uptime — <span id="sb-clock"></span></div><a href="pricing.html" class="sb-promo-btn"><i class="fa-solid fa-tag"></i> View Plans</a></div>
+</aside>
+<div id="sb-overlay"></div>
+<div id="main">
+  <header id="topbar">
+    <button class="ham-btn"><span></span><span></span><span></span></button>
+    <div class="tb-breadcrumb"><a href="index.html" style="color:var(--brand-light)"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i><span>System Status</span></div>
+    <div class="tb-right">
+      <div class="live-badge"><span class="l-dot"></span>LIVE</div>
+      <button class="theme-pill" data-theme-toggle><div class="theme-pill-thumb">🌙</div><div class="theme-pill-track"></div></button>
+      <img src="images/logo.jpg" alt="" class="tb-avatar">
+    </div>
+  </header>
+  <div class="page">
+
+    <div class="status-hero">
+      <div class="status-overall ok"><i class="fa-solid fa-circle-check"></i> All Systems Operational</div>
+      <p style="color:var(--text-2);font-size:0.85rem">Last checked: <span style="font-family:'JetBrains Mono',monospace" id="last-check"></span></p>
+    </div>
+
+    <section class="sec">
+      <div class="status-grid fade-u">
+        <div class="status-card">
+          <div class="status-card-header"><div class="status-card-name"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i> JMWhatsApp Engine</div><span class="status-pill ok"><span style="width:5px;height:5px;border-radius:50%;background:currentColor;display:inline-block"></span>Operational</span></div>
+          <div class="status-ping-val" data-live-ping-val="28">28ms</div><div class="status-ping-label">Avg Response Time</div>
+          <div class="status-bars" id="jm-bars"></div>
+          <div class="status-uptime-pct"><span>90 days ago</span><span style="color:var(--green);font-weight:700">99.98% uptime</span><span>Today</span></div>
+        </div>
+        <div class="status-card">
+          <div class="status-card-header"><div class="status-card-name"><i class="fa-solid fa-robot" style="color:var(--brand-light)"></i> Miss Chatra AI</div><span class="status-pill ok"><span style="width:5px;height:5px;border-radius:50%;background:currentColor;display:inline-block"></span>Operational</span></div>
+          <div class="status-ping-val" data-live-ping-val="142">142ms</div><div class="status-ping-label">AI Endpoint Latency</div>
+          <div class="status-bars" id="mc-bars"></div>
+          <div class="status-uptime-pct"><span>90 days ago</span><span style="color:var(--green);font-weight:700">99.95% uptime</span><span>Today</span></div>
+        </div>
+        <div class="status-card">
+          <div class="status-card-header"><div class="status-card-name"><i class="fa-solid fa-cloud-arrow-up" style="color:var(--cyan)"></i> Contact Autosave</div><span class="status-pill ok"><span style="width:5px;height:5px;border-radius:50%;background:currentColor;display:inline-block"></span>Operational</span></div>
+          <div class="status-ping-val" data-live-ping-val="54">54ms</div><div class="status-ping-label">Sync Latency</div>
+          <div class="status-bars" id="as-bars"></div>
+          <div class="status-uptime-pct"><span>90 days ago</span><span style="color:var(--green);font-weight:700">99.99% uptime</span><span>Today</span></div>
+        </div>
+        <div class="status-card">
+          <div class="status-card-header"><div class="status-card-name"><i class="fa-solid fa-server" style="color:var(--amber)"></i> Cloud Infrastructure</div><span class="status-pill ok"><span style="width:5px;height:5px;border-radius:50%;background:currentColor;display:inline-block"></span>Operational</span></div>
+          <div class="status-ping-val" data-live-ping-val="18">18ms</div><div class="status-ping-label">Server Response</div>
+          <div class="status-bars" id="cl-bars"></div>
+          <div class="status-uptime-pct"><span>90 days ago</span><span style="color:var(--green);font-weight:700">99.99% uptime</span><span>Today</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec sec-alt">
+      <div class="sec-head"><div class="sec-eye">Load Heatmap</div><h2 class="sec-title">System Load <span class="gt">— Last 7 Days</span></h2></div>
+      <div style="display:flex;align-items:center;gap:12px;overflow-x:auto;padding:8px 0" class="fade-u">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="heatmap-row-label">Mon</div><div class="heatmap-row-label">Tue</div>
+          <div class="heatmap-row-label">Wed</div><div class="heatmap-row-label">Thu</div>
+          <div class="heatmap-row-label">Fri</div><div class="heatmap-row-label">Sat</div>
+          <div class="heatmap-row-label">Sun</div>
+        </div>
+        <div style="display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;gap:4px;flex:1">
+          <script>for(let i=0;i<168;i++)document.write('<div class="heatmap-cell"></div>')</script>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:0.65rem;color:var(--text-3);font-family:'JetBrains Mono',monospace">
+        <span>Low</span>
+        <div style="display:flex;gap:3px">
+          <div style="width:12px;height:12px;border-radius:3px;background:var(--bg-3)"></div>
+          <div style="width:12px;height:12px;border-radius:3px;background:rgba(108,85,240,0.2)"></div>
+          <div style="width:12px;height:12px;border-radius:3px;background:rgba(108,85,240,0.45)"></div>
+          <div style="width:12px;height:12px;border-radius:3px;background:rgba(108,85,240,0.7)"></div>
+          <div style="width:12px;height:12px;border-radius:3px;background:rgba(34,211,238,0.8)"></div>
+        </div>
+        <span>High</span>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><div class="sec-eye">Incident History</div><h2 class="sec-title">Recent <span class="gt">Incidents</span></h2></div>
+      <div class="incident-list fade-u">
+        <div class="incident-item"><div class="incident-dot" style="background:var(--green)"></div><div><div class="incident-title">No incidents in the last 30 days</div><div class="incident-desc">All systems have been fully operational. Last incident was resolved over 30 days ago.</div><div class="incident-time">Monitoring since Jan 2024</div></div></div>
+        <div class="incident-item"><div class="incident-dot" style="background:var(--amber)"></div><div><div class="incident-title">Elevated latency — AI Endpoints</div><div class="incident-desc">Miss Chatra experienced 340ms avg latency due to upstream AI provider degradation. Resolved by routing to backup endpoints within 12 minutes.</div><div class="incident-time">31 days ago · Duration: 12 min · Resolved</div></div></div>
+        <div class="incident-item"><div class="incident-dot" style="background:var(--green)"></div><div><div class="incident-title">Maintenance: Baileys ESM Migration</div><div class="incident-desc">Scheduled upgrade of JMWhatsApp to Baileys 7.x ESM compatibility. Zero downtime achieved via rolling deployment.</div><div class="incident-time">45 days ago · Duration: 0 min · Completed</div></div></div>
+      </div>
+    </section>
+
+  </div>
+  <footer id="footer"><div class="foot-grid"><div><div class="foot-logo-row"><img src="images/logo.jpg" class="foot-logo-img" alt=""><div class="foot-logo-name">JusticeTech <span>System</span></div></div><p class="foot-desc">Engineering AI automation, messaging infrastructure, and cloud-native software.</p></div><div><div class="foot-col-title">Navigate</div><a href="index.html" class="foot-link">Home</a><a href="pricing.html" class="foot-link">Pricing</a><a href="status.html" class="foot-link">Status</a></div><div><div class="foot-col-title">Projects</div><a href="jmwhatsapp.html" class="foot-link">JMWhatsApp</a><a href="misschatra.html" class="foot-link">Miss Chatra</a><a href="autosave.html" class="foot-link">Autosave</a></div><div><div class="foot-col-title">Company</div><a href="team.html" class="foot-link">Team</a><a href="changelog.html" class="foot-link">Changelog</a><a href="docs.html" class="foot-link">Docs</a></div></div><div class="foot-bottom"><div class="foot-copy">&copy; <span data-year></span> JusticeTech System.</div></div></footer>
+</div>
+</div>
+<a href="index.html#contact" id="float-chat"><span class="fc-live"></span>Chat With Us</a>
+<button id="btt"><i class="fa-solid fa-arrow-up"></i></button>
+<div id="toast-wrap"></div>
+<script>
+// Generate status bars
+['jm-bars','mc-bars','as-bars','cl-bars'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(!el)return;
+  for(let i=0;i<90;i++){const r=Math.random();const cls=r>0.97?'down':r>0.93?'warn':'ok';const b=document.createElement('div');b.className='status-bar '+cls;el.appendChild(b);}
+});
+document.getElementById('last-check').textContent=new Date().toLocaleTimeString();
+</script>
+<script src="js/script.js"></script><script src="js/features.js"></script>
+</body></html>

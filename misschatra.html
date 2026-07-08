@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Miss Chatra — AI Assistant | JusticeTech System</title>
+<meta name="description" content="Miss Chatra is a multi-lingual AI assistant for WhatsApp and Telegram with 12+ synced AI endpoints.">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/features.css">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<!-- TECH BACKGROUND LAYERS -->
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<div class="tech-overlay"></div>
+
+<canvas id="bg-canvas"></canvas>
+<div class="cursor-dot"></div><div class="cursor-ring"></div>
+<div id="loader"><div class="ld-logo"><img src="images/logo.jpg" class="ld-logo-img" alt=""><div class="ld-name">JusticeTech <span>System</span></div></div><div class="ld-bar"><div class="ld-fill"></div></div><div class="ld-tag">LOADING MISS CHATRA...</div></div>
+<div id="scroll-bar"></div>
+<div id="search-ov"><div class="s-box"><div class="s-top"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="s-inp" class="s-inp" placeholder="Search..."><button id="s-esc" class="s-esc">ESC</button></div><div id="s-results" class="s-results"></div></div></div>
+<div id="cmd-palette"><div class="cmd-box"><div class="cmd-header"><i class="fa-solid fa-magnifying-glass cmd-icon"></i><input type="text" id="cmd-input" class="cmd-input" placeholder="Search commands, pages, actions..."><span class="cmd-shortcut">ESC</span></div><div id="cmd-results" class="cmd-results"></div><div class="cmd-footer"><span class="cmd-footer-key"><kbd>↑↓</kbd> navigate</span><span class="cmd-footer-key"><kbd>↵</kbd> select</span><span class="cmd-footer-key"><kbd>esc</kbd> close</span></div></div></div>
+<div id="ach-toast" class="achievement-toast"><div class="ach-icon" id="ach-icon">🏆</div><div><div class="ach-badge">Achievement Unlocked</div><div class="ach-title" id="ach-title"></div><div class="ach-desc" id="ach-desc"></div></div><div class="ach-points" id="ach-pts"></div></div>
+<div id="konami-overlay" class="konami-overlay"><canvas id="konami-canvas" class="konami-matrix"></canvas><div class="konami-content"><div class="konami-title">JUSTICE CODE ACTIVATED</div><div class="konami-sub">You found the secret. 30 days free — use code <strong style="color:var(--cyan)">KONAMI30</strong></div><button class="konami-close" id="konami-close">Close & Claim</button></div></div>
+
+
+<div class="shell">
+<aside id="sidebar">
+  <div class="sb-profile"><img src="images/logo.jpg" alt="" class="sb-logo"><div><div class="sb-name">JusticeTech System</div><div class="sb-status">All Systems Online</div></div></div>
+  <nav class="sb-nav">
+    <a href="index.html" class="sb-link"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+    <a href="index.html#features" class="sb-link"><i class="fa-solid fa-bolt"></i>Services</a>
+    <a href="pricing.html" class="sb-link"><i class="fa-solid fa-tag"></i>Pricing</a>
+    <a href="status.html" class="sb-link"><i class="fa-solid fa-circle-dot"></i>Status</a>
+    <a href="changelog.html" class="sb-link"><i class="fa-solid fa-clock-rotate-left"></i>Changelog</a>
+    <a href="docs.html" class="sb-link"><i class="fa-solid fa-book"></i>Docs</a>
+            <div class="sb-label">Projects</div>
+    <a href="jmwhatsapp.html" class="sb-link"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i>JMWhatsApp<span class="sb-badge">v41</span></a>
+    <a href="misschatra.html" class="sb-link active"><i class="fa-solid fa-robot" style="color:var(--brand-light)"></i>Miss Chatra<span class="sb-badge">v16</span></a>
+    <a href="autosave.html" class="sb-link"><i class="fa-solid fa-cloud-arrow-up" style="color:var(--cyan)"></i>Autosave</a>
+    <a href="groupfinder.html" class="sb-link"><i class="fa-solid fa-magnifying-glass" style="color:#a78bfa"></i>GroupFinder<span class="sb-badge">v66</span></a>
+    <a href="ultragatex.html" class="sb-link"><i class="fa-solid fa-shield-halved" style="color:#a78bfa"></i>UltraGateX</a>
+    <a href="obfuscationary.html" class="sb-link"><i class="fa-solid fa-user-secret" style="color:#f87171"></i>Obfuscationary</a>
+    <a href="liveupdaterx.html" class="sb-link"><i class="fa-solid fa-arrows-rotate" style="color:#38bdf8"></i>LiveUpdaterX</a>
+    <a href="pstore.html" class="sb-link"><i class="fa-solid fa-store" style="color:#4ade80"></i>PStore</a>
+    <a href="buypayx.html" class="sb-link"><i class="fa-solid fa-cart-shopping" style="color:#60a5fa"></i>BuyPayX</a>
+    <a href="baas.html" class="sb-link"><i class="fa-solid fa-server" style="color:#fb923c"></i>BaaS System</a>
+    <div class="sb-label">More</div>
+    <a href="team.html" class="sb-link"><i class="fa-solid fa-users"></i>Team</a>
+    <a href="showcase.html" class="sb-link"><i class="fa-solid fa-trophy"></i>Showcase</a>
+    <a href="referral.html" class="sb-link"><i class="fa-solid fa-share-nodes"></i>Referral</a>
+    <div class="sb-label">System</div>
+    <a href="index.html#contact" class="sb-link"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="#" class="sb-link"><i class="fa-solid fa-gear"></i>Settings</a>
+  </nav>
+  <div class="site-progress">
+    <div class="site-progress-label"><span>Your Progress</span><span id="progress-pct">0%</span></div>
+    <div class="site-progress-bar"><div class="site-progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+  <div id="trophy-case" class="trophy-case"></div>
+  <div class="sb-promo">
+    <div class="sb-promo-logo"><img src="images/logo.jpg" alt="">Miss Chatra</div>
+    <div class="sb-promo-text">v16.4 — 12 endpoints synced<br><span id="sb-clock"></span></div>
+    <a href="#" class="sb-promo-btn"><i class="fa-brands fa-telegram"></i> Try On Telegram</a>
+  </div>
+</aside>
+<div id="sb-overlay"></div>
+
+<div id="main">
+  <header id="topbar">
+    <button class="ham-btn" aria-label="Toggle sidebar"><span></span><span></span><span></span></button>
+    <div class="tb-breadcrumb">
+      <a href="index.html" style="color:var(--brand-light)"><i class="fa-solid fa-house"></i></a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <a href="index.html#projects" style="color:var(--brand-light)">Projects</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>Miss Chatra</span>
+    </div>
+    <div class="tb-right">
+      <button class="tb-search" data-search><i class="fa-solid fa-magnifying-glass"></i> Search... <kbd>⌘K</kbd></button>
+      <div class="notif-btn" style="position:relative"><button class="tb-btn" id="notif-btn"><i class="fa-regular fa-bell"></i><span class="notif-dot"></span></button><div class="notif-dropdown" id="notif-dropdown"><div class="notif-header"><span class="notif-title">Notifications</span><span class="notif-mark-read" id="notif-mark-read">Mark all read</span></div><div id="notif-body"></div><div class="notif-footer"><a href="changelog.html">View all updates →</a></div></div></div>
+      <button class="tb-btn" data-cmd-open title="Command Palette (⌘K)"><i class="fa-solid fa-terminal"></i></button>
+      <button class="theme-pill" data-theme-toggle><div class="theme-pill-thumb">🌙</div><div class="theme-pill-track"></div></button>
+      <img src="images/logo.jpg" alt="" class="tb-avatar">
+    </div>
+  </header>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <div class="proj-hero">
+      <div class="h-orb h-orb-1" style="background:rgba(108,85,240,0.18)"></div>
+      <div class="h-orb h-orb-2" style="background:rgba(34,211,238,0.12)"></div>
+      <div class="proj-hero-grid">
+        <div class="fade-u">
+          <div class="proj-bc"><a href="index.html">Home</a><i class="fa-solid fa-chevron-right"></i><a href="index.html#projects">Projects</a><i class="fa-solid fa-chevron-right"></i>Miss Chatra</div>
+          <div class="proj-ver"><i class="fa-solid fa-code-branch"></i> v16.4 — Stable</div>
+          <h1 class="proj-title">Miss <span class="gt">Chatra</span></h1>
+          <p class="proj-desc">A next-generation, context-aware AI assistant engineered for customer support, content scheduling, and multi-platform engagement — synced across 12+ AI endpoints with full multi-lingual NLP comprehension.</p>
+          <div class="proj-meta">
+            <div class="pm-i"><div class="pm-l">Category</div><div class="pm-v">AI Assistant</div></div>
+            <div class="pm-i"><div class="pm-l">Stack</div><div class="pm-v">Python · Telethon</div></div>
+            <div class="pm-i"><div class="pm-l">Status</div><div class="pm-v pm-live">Live & Maintained</div></div>
+            <div class="pm-i"><div class="pm-l">Platforms</div><div class="pm-v">WhatsApp · Telegram</div></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap">
+            <a href="#" class="btn btn-p"><i class="fa-brands fa-telegram"></i> Try On Telegram</a>
+            <a href="#" class="btn btn-o"><i class="fa-brands fa-whatsapp"></i> Try On WhatsApp</a>
+          </div>
+        </div>
+        <div class="fade-r">
+          <div class="proj-img-wrap mc-img-wrap"><img src="images/misschatra.jpg" alt="Miss Chatra"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAT PREVIEW + HIGHLIGHTS -->
+    <section class="sec sec-alt">
+      <div class="grid-2-c">
+        <div class="fade-l">
+          <div class="sec-eye">Live Preview</div>
+          <h2 class="sec-title">See Miss Chatra <span class="gt">Think In Real Time</span></h2>
+          <p class="sec-sub" style="margin-bottom:22px">Every reply flows through a context-retention pipeline — Miss Chatra remembers previous messages, detects intent, and routes to the right AI endpoint automatically.</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px 16px;display:flex;gap:12px;align-items:center;backdrop-filter:blur(12px)">
+              <div style="width:36px;height:36px;border-radius:10px;background:var(--brand-dim);border:1px solid rgba(108,85,240,0.25);display:flex;align-items:center;justify-content:center;color:var(--brand-light);flex-shrink:0"><i class="fa-solid fa-language"></i></div>
+              <div><div style="font-size:0.84rem;font-weight:700;color:var(--text-1)">Multi-Lingual NLP</div><div style="font-size:0.74rem;color:var(--text-2)">Auto-detects and replies in the user's language.</div></div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px 16px;display:flex;gap:12px;align-items:center;backdrop-filter:blur(12px)">
+              <div style="width:36px;height:36px;border-radius:10px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.22);display:flex;align-items:center;justify-content:center;color:var(--cyan);flex-shrink:0"><i class="fa-solid fa-memory"></i></div>
+              <div><div style="font-size:0.84rem;font-weight:700;color:var(--text-1)">Context Memory</div><div style="font-size:0.74rem;color:var(--text-2)">Retains thread history for coherent follow-ups.</div></div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px 16px;display:flex;gap:12px;align-items:center;backdrop-filter:blur(12px)">
+              <div style="width:36px;height:36px;border-radius:10px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.22);display:flex;align-items:center;justify-content:center;color:var(--green);flex-shrink:0"><i class="fa-solid fa-shield-halved"></i></div>
+              <div><div style="font-size:0.84rem;font-weight:700;color:var(--text-1)">NSFW Detection</div><div style="font-size:0.74rem;color:var(--text-2)">Content safety filtering enabled on every thread.</div></div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px 16px;display:flex;gap:12px;align-items:center;backdrop-filter:blur(12px)">
+              <div style="width:36px;height:36px;border-radius:10px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.22);display:flex;align-items:center;justify-content:center;color:var(--amber);flex-shrink:0"><i class="fa-solid fa-calendar-check"></i></div>
+              <div><div style="font-size:0.84rem;font-weight:700;color:var(--text-1)">Post Scheduling</div><div style="font-size:0.74rem;color:var(--text-2)">Plan, queue, and auto-publish content with analytics.</div></div>
+            </div>
+          </div>
+        </div>
+        <!-- Chat preview -->
+        <div class="fade-r">
+          <div class="chat-preview">
+            <div class="cp-h">
+              <div class="cp-av">MC</div>
+              <div><div class="cp-nm">Miss Chatra</div><div class="cp-st">● Online — 12 endpoints synced</div></div>
+            </div>
+            <div class="cp-body">
+              <div class="cb cb-user">Hey, can you summarize our last conversation about the Q3 launch?</div>
+              <div class="cb cb-bot">Sure — you were finalizing the rollout date and asked me to draft the announcement copy. Want me to pick that back up?</div>
+              <div class="cb cb-user">Yes please, keep it short and punchy.</div>
+              <div class="cp-typ"><span></span><span></span><span></span></div>
+            </div>
+            <div class="cp-inp-r">
+              <div class="cp-fld">Type a message...</div>
+              <div class="cp-send"><i class="fa-solid fa-paper-plane"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE AI DEMO -->
+    <section class="sec">
+      <div class="sec-head c"><div class="sec-eye">Try It Live</div><h2 class="sec-title">Talk To <span class="gt">Miss Chatra Right Now</span></h2><p class="sec-sub">This is a real interactive demo. Ask about pricing, JMWhatsApp, or just say hello!</p></div>
+      <div class="ai-demo-section fade-u">
+        <div class="ai-demo-header">
+          <div class="ai-demo-title"><i class="fa-solid fa-robot" style="color:var(--brand-light)"></i> Miss Chatra — Live Demo</div>
+          <div class="ai-demo-powered"><span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block"></span> 12 endpoints synced</div>
+        </div>
+        <div class="ai-demo-body" id="ai-demo-body">
+          <div class="demo-msg bot">Hi! I'm Miss Chatra. Ask me anything about JusticeTech's products, pricing, or just say hello 👋</div>
+        </div>
+        <div class="ai-demo-suggestions">
+          <span class="ai-demo-suggest">Tell me about pricing</span>
+          <span class="ai-demo-suggest">What is JMWhatsApp?</span>
+          <span class="ai-demo-suggest">How does Autosave work?</span>
+        </div>
+        <div class="ai-demo-footer">
+          <input type="text" class="ai-demo-input" id="ai-demo-input" placeholder="Type your message...">
+          <button class="ai-demo-send" id="ai-demo-send"><i class="fa-solid fa-paper-plane"></i> Send</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="sec">
+      <div class="sec-head c"><div class="sec-eye">Feature Highlights</div><h2 class="sec-title">Built For <span class="gt">Real Workloads</span></h2></div>
+      <div class="benefits-grid fade-u">
+        <div class="ben-card"><div class="ben-n">01</div><div class="ben-title" style="color:var(--brand-light)"><i class="fa-solid fa-brain" style="margin-right:7px"></i>12+ AI Endpoints</div><div class="ben-desc">Routes across Gemini 2.5, DeepSeek R1, QwQ-32B, Copilot Deep Think — all synced for optimal quality per query type.</div></div>
+        <div class="ben-card"><div class="ben-n">02</div><div class="ben-title" style="color:var(--cyan)"><i class="fa-solid fa-calendar" style="margin-right:7px"></i>Post Scheduling</div><div class="ben-desc">Plan, queue, and auto-publish content with built-in analytics, delivery receipts, and per-destination tracking.</div></div>
+        <div class="ben-card"><div class="ben-n">03</div><div class="ben-title" style="color:var(--green)"><i class="fa-solid fa-toggle-on" style="margin-right:7px"></i>Per-Group Toggles</div><div class="ben-desc">Fine-grained developer controls let you enable or disable chatbot features per group or per deployment instance.</div></div>
+        <div class="ben-card"><div class="ben-n">04</div><div class="ben-title" style="color:var(--amber)"><i class="fa-solid fa-clock-rotate-left" style="margin-right:7px"></i>Auto-Update Cycle</div><div class="ben-desc">Background checker keeps every deployment current every 6 hours — no manual intervention ever required.</div></div>
+        <div class="ben-card"><div class="ben-n">05</div><div class="ben-title" style="color:var(--pink)"><i class="fa-solid fa-image" style="margin-right:7px"></i>Image Generation</div><div class="ben-desc">Multiple AI image styles available as commands — anime, realistic, artistic, and more via different endpoints.</div></div>
+        <div class="ben-card"><div class="ben-n">06</div><div class="ben-title" style="color:#8b72ff"><i class="fa-solid fa-gamepad" style="margin-right:7px"></i>Games Suite</div><div class="ben-desc">Word Chain, Trivia, Scrabble, Blackjack, Truth/Dare — all playable directly inside WhatsApp or Telegram chats.</div></div>
+      </div>
+    </section>
+
+    <!-- SCREENSHOTS -->
+    <section class="sec sec-alt">
+      <div class="sec-head c"><div class="sec-eye">Visual Tour</div><h2 class="sec-title">Screenshots & <span class="gt">Conversation Samples</span></h2></div>
+      <div class="shots-grid fade-u">
+        <div class="shot"><img src="images/misschatra.jpg" alt="Miss Chatra 1"><div class="shot-ov"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div>
+        <div class="shot"><img src="images/misschatra.jpg" alt="Miss Chatra 2"><div class="shot-ov"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div>
+        <div class="shot"><img src="images/misschatra.jpg" alt="Miss Chatra 3"><div class="shot-ov"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="sec">
+      <div class="dl-box fade-u">
+        <div class="proj-ver" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.8)"><i class="fa-solid fa-sparkles"></i> Available On Two Platforms</div>
+        <h2 class="sec-title" style="font-size:clamp(1.6rem,3vw,2.2rem)">Start Talking To <span class="gt">Miss Chatra Today</span></h2>
+        <p style="color:var(--text-2);text-align:center;max-width:500px;line-height:1.7">No setup required — message her directly on Telegram or WhatsApp and she handles the rest.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+          <a href="#" class="btn btn-p btn-lg"><i class="fa-brands fa-telegram"></i> Open In Telegram</a>
+          <a href="#" class="btn btn-o btn-lg"><i class="fa-brands fa-whatsapp"></i> Open In WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer id="footer">
+    <div class="foot-grid">
+      <div><div class="foot-logo-row"><img src="images/logo.jpg" class="foot-logo-img" alt=""><div class="foot-logo-name">JusticeTech <span>System</span></div></div><p class="foot-desc">Engineering AI automation, messaging infrastructure, and cloud-native software for the modern enterprise.</p><div class="f-badges"><span class="f-badge"><span class="f-bdot" style="background:var(--green)"></span>All Systems Operational</span></div></div>
+      <div><div class="foot-col-title">Navigate</div><a href="index.html" class="foot-link">Home</a><a href="index.html#about" class="foot-link">About</a><a href="index.html#contact" class="foot-link">Contact</a></div>
+      <div><div class="foot-col-title">Projects</div><a href="jmwhatsapp.html" class="foot-link">JMWhatsApp</a><a href="misschatra.html" class="foot-link">Miss Chatra</a><a href="autosave.html" class="foot-link">Contact Autosave</a></div>
+      <div><div class="foot-col-title">Connect</div><a href="#" class="foot-link">Twitter / X</a><a href="#" class="foot-link">GitHub</a><a href="#" class="foot-link">Telegram</a></div>
+    </div>
+    <div class="foot-bottom"><div class="foot-copy">&copy; <span data-year></span> JusticeTech System. All rights reserved.</div><div class="foot-legal"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </footer>
+</div>
+</div>
+
+<a href="index.html#contact" id="float-chat"><span class="fc-live"></span>Chat With Us</a>
+<button id="btt"><i class="fa-solid fa-arrow-up"></i></button>
+<div id="toast-wrap"></div>
+<script src="js/script.js"></script>
+<script src="js/features.js"></script>
+</body>
+</html>

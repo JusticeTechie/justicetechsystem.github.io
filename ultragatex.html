@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>UltraGateX — License Management Bot | JusticeTech System</title>
+<meta name="description" content="UltraGateX is an advanced Telegram license management bot with QR delivery, fraud detection, and self-updating architecture.">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#6c55f0">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/features.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="bg-orb bg-orb-1"></div><div class="bg-orb bg-orb-2"></div><div class="bg-orb bg-orb-3"></div>
+<div class="tech-overlay"></div>
+<div class="cursor-dot"></div><div class="cursor-ring"></div>
+<div id="loader"><div class="ld-logo"><img src="images/logo.jpg" class="ld-logo-img" alt=""><div class="ld-name">JusticeTech <span>System</span></div></div><div class="ld-bar"><div class="ld-fill"></div></div><div class="ld-tag">LOADING ULTRAGATEX...</div></div>
+<div id="scroll-bar"></div>
+<div id="search-ov"><div class="s-box"><div class="s-top"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="s-inp" class="s-inp" placeholder="Search..."><button id="s-esc" class="s-esc">ESC</button></div><div id="s-results" class="s-results"></div></div></div>
+<div id="cmd-palette"><div class="cmd-box"><div class="cmd-header"><i class="fa-solid fa-magnifying-glass cmd-icon"></i><input type="text" id="cmd-input" class="cmd-input" placeholder="Search commands..."><span class="cmd-shortcut">ESC</span></div><div id="cmd-results" class="cmd-results"></div></div></div>
+<div id="ach-toast" class="achievement-toast"><div class="ach-icon" id="ach-icon">🏆</div><div><div class="ach-badge">Achievement Unlocked</div><div class="ach-title" id="ach-title"></div><div class="ach-desc" id="ach-desc"></div></div><div class="ach-points" id="ach-pts"></div></div>
+<div id="konami-overlay" class="konami-overlay"><canvas id="konami-canvas" class="konami-matrix"></canvas><div class="konami-content"><div class="konami-title">JUSTICE CODE ACTIVATED</div><div class="konami-sub">Use code <strong style="color:var(--cyan)">KONAMI30</strong></div><button class="konami-close" id="konami-close">Close</button></div></div>
+
+<div class="shell">
+<aside id="sidebar">
+  <div class="sb-profile"><img src="images/logo.jpg" alt="" class="sb-logo"><div><div class="sb-name">JusticeTech System</div><div class="sb-status">All Systems Online</div></div></div>
+  <nav class="sb-nav">
+    <a href="index.html" class="sb-link"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+    <a href="index.html#features" class="sb-link"><i class="fa-solid fa-bolt"></i>Services</a>
+    <a href="pricing.html" class="sb-link"><i class="fa-solid fa-tag"></i>Pricing</a>
+    <a href="status.html" class="sb-link"><i class="fa-solid fa-circle-dot"></i>Status</a>
+    <a href="changelog.html" class="sb-link"><i class="fa-solid fa-clock-rotate-left"></i>Changelog</a>
+    <a href="docs.html" class="sb-link"><i class="fa-solid fa-book"></i>Docs</a>
+        <div class="sb-label">Projects</div>
+    <a href="jmwhatsapp.html" class="sb-link"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i>JMWhatsApp<span class="sb-badge">v41</span></a>
+    <a href="misschatra.html" class="sb-link"><i class="fa-solid fa-robot" style="color:var(--brand-light)"></i>Miss Chatra<span class="sb-badge">v16</span></a>
+    <a href="autosave.html" class="sb-link"><i class="fa-solid fa-cloud-arrow-up" style="color:var(--cyan)"></i>Autosave</a>
+    <a href="groupfinder.html" class="sb-link"><i class="fa-solid fa-magnifying-glass" style="color:#a78bfa"></i>GroupFinder<span class="sb-badge">v66</span></a>
+    <a href="ultragatex.html" class="sb-link active"><i class="fa-solid fa-shield-halved" style="color:#a78bfa"></i>UltraGateX</a>
+    <a href="obfuscationary.html" class="sb-link"><i class="fa-solid fa-user-secret" style="color:#f87171"></i>Obfuscationary</a>
+    <a href="liveupdaterx.html" class="sb-link"><i class="fa-solid fa-arrows-rotate" style="color:#38bdf8"></i>LiveUpdaterX</a>
+    <a href="pstore.html" class="sb-link"><i class="fa-solid fa-store" style="color:#4ade80"></i>PStore</a>
+    <a href="buypayx.html" class="sb-link"><i class="fa-solid fa-cart-shopping" style="color:#60a5fa"></i>BuyPayX</a>
+    <a href="baas.html" class="sb-link"><i class="fa-solid fa-server" style="color:#fb923c"></i>BaaS System</a>
+    <div class="sb-label">More</div>
+    <a href="team.html" class="sb-link"><i class="fa-solid fa-users"></i>Team</a>
+    <a href="showcase.html" class="sb-link"><i class="fa-solid fa-trophy"></i>Showcase</a>
+    <a href="referral.html" class="sb-link"><i class="fa-solid fa-share-nodes"></i>Referral</a>
+    <div class="sb-label">System</div>
+    <a href="index.html#contact" class="sb-link"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="#" class="sb-link"><i class="fa-solid fa-gear"></i>Settings</a>
+  </nav>
+  <div class="site-progress"><div class="site-progress-label"><span>Your Progress</span><span id="progress-pct">0%</span></div><div class="site-progress-bar"><div class="site-progress-fill" id="progress-fill" style="width:0%"></div></div></div>
+  <div id="trophy-case" class="trophy-case"></div>
+  <div class="sb-promo"><div class="sb-promo-logo"><img src="images/ultragatex-logo.jpg" alt="">UltraGateX</div><div class="sb-promo-text">v3.5 — License engine live<br><span id="sb-clock"></span></div><a href="index.html#contact" class="sb-promo-btn"><i class="fa-solid fa-key"></i> Get Licensed</a></div>
+</aside>
+<div id="sb-overlay"></div>
+
+<div id="main">
+  <header id="topbar">
+    <button class="ham-btn" aria-label="Toggle sidebar"><span></span><span></span><span></span></button>
+    <div class="tb-breadcrumb"><a href="index.html" style="color:var(--brand-light)"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i><a href="index.html#projects" style="color:var(--brand-light)">Projects</a><i class="fa-solid fa-chevron-right"></i><span>UltraGateX</span></div>
+    <div class="tb-right">
+      <button class="tb-search" data-search><i class="fa-solid fa-magnifying-glass"></i> Search... <kbd>⌘K</kbd></button>
+      <div class="notif-btn" style="position:relative"><button class="tb-btn" id="notif-btn"><i class="fa-regular fa-bell"></i><span class="notif-dot"></span></button><div class="notif-dropdown" id="notif-dropdown"><div class="notif-header"><span class="notif-title">Notifications</span><span class="notif-mark-read" id="notif-mark-read">Mark all read</span></div><div id="notif-body"></div><div class="notif-footer"><a href="changelog.html">View all updates →</a></div></div></div>
+      <button class="tb-btn" data-cmd-open title="Command Palette (⌘K)"><i class="fa-solid fa-terminal"></i></button>
+      <button class="theme-pill" data-theme-toggle><div class="theme-pill-thumb">🌙</div><div class="theme-pill-track"></div></button>
+      <img src="images/logo.jpg" alt="" class="tb-avatar">
+    </div>
+  </header>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <div class="proj-hero">
+      <div class="h-orb h-orb-1" style="background:rgba(167,139,250,0.18)"></div>
+      <div class="h-orb h-orb-2" style="background:rgba(255,215,90,0.1)"></div>
+      <div class="proj-hero-grid">
+        <div class="fade-u">
+          <div class="proj-bc"><a href="index.html">Home</a><i class="fa-solid fa-chevron-right"></i><a href="index.html#projects">Projects</a><i class="fa-solid fa-chevron-right"></i>UltraGateX</div>
+          <div class="proj-ver"><i class="fa-solid fa-code-branch"></i> v3.5 FINAL — Stable</div>
+          <h1 class="proj-title">Ultra<span style="color:#a78bfa">GateX</span></h1>
+          <p class="proj-desc">The most advanced Telegram license management bot for JMWhatsApp Ultra. Plugin-based architecture, self-updating from GitHub, QR code delivery, honeypot fraud traps, and real-time geographic anomaly detection.</p>
+          <div class="proj-meta">
+            <div class="pm-i"><div class="pm-l">Category</div><div class="pm-v">License Management</div></div>
+            <div class="pm-i"><div class="pm-l">Stack</div><div class="pm-v">Python · Telegram Bot API</div></div>
+            <div class="pm-i"><div class="pm-l">Status</div><div class="pm-v pm-live">Live & Maintained</div></div>
+            <div class="pm-i"><div class="pm-l">Architecture</div><div class="pm-v">Plugin-Based</div></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap">
+            <a href="#features" class="btn btn-p"><i class="fa-solid fa-key"></i> Explore Features</a>
+            <a href="#architecture" class="btn btn-o"><i class="fa-solid fa-diagram-project"></i> Architecture</a>
+          </div>
+        </div>
+        <div class="fade-r">
+          <div class="proj-img-wrap"><img src="images/ultragatex-logo.jpg" alt="UltraGateX"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <section class="sec sec-alt">
+      <div class="stats-band zoom fade-u">
+        <div class="stat-c"><div class="stat-n"><span class="counter" data-target="9">0</span></div><div class="stat-lbl">Core Plugins</div></div>
+        <div class="stat-c"><div class="stat-n"><span class="counter" data-target="30">0</span></div><div class="stat-lbl">Min Integrity Check</div></div>
+        <div class="stat-c"><div class="stat-n"><span class="counter" data-target="3">0</span></div><div class="stat-lbl">Languages Supported</div></div>
+        <div class="stat-c"><div class="stat-n"><span class="counter" data-target="90">0</span></div><div class="stat-lbl">Day License Cycle</div></div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="sec">
+      <div class="sec-head c"><div class="sec-eye">Capabilities</div><h2 class="sec-title">License Management <span class="gt">Redefined</span></h2></div>
+      <div class="benefits-grid fade-u">
+        <div class="ben-card"><div class="ben-n">01</div><div class="ben-title" style="color:#a78bfa"><i class="fa-solid fa-key" style="margin-right:7px"></i>Smart License Keys</div><div class="ben-desc">Name-embedded keys, developer master keys, expiry by days/dates/lifetime, and instant license templates for bulk generation.</div></div>
+        <div class="ben-card"><div class="ben-n">02</div><div class="ben-title" style="color:#f87171"><i class="fa-solid fa-shield-halved" style="margin-right:7px"></i>Fraud Detection</div><div class="ben-desc">Device fingerprint binding, geographic anomaly detection, honeypot license traps, and real-time fraud alerts sent directly to admins.</div></div>
+        <div class="ben-card"><div class="ben-n">03</div><div class="ben-title" style="color:var(--cyan)"><i class="fa-solid fa-qrcode" style="margin-right:7px"></i>QR Code Delivery</div><div class="ben-desc">Every license generates a scannable QR code — no more copying 32-character strings. Resend anytime with /myqr.</div></div>
+        <div class="ben-card"><div class="ben-n">04</div><div class="ben-title" style="color:var(--amber)"><i class="fa-solid fa-chart-line" style="margin-right:7px"></i>Analytics & Intelligence</div><div class="ben-desc">Full license history timelines, daily health reports at 09:05 UTC, geographic distribution maps, and duplicate device detection.</div></div>
+        <div class="ben-card"><div class="ben-n">05</div><div class="ben-title" style="color:var(--green)"><i class="fa-solid fa-arrows-rotate" style="margin-right:7px"></i>Self-Updating</div><div class="ben-desc">/update pulls the latest code directly from GitHub, shows exactly which files changed, and restarts with zero downtime.</div></div>
+        <div class="ben-card"><div class="ben-n">06</div><div class="ben-title" style="color:#ec4899"><i class="fa-solid fa-globe" style="margin-right:7px"></i>Multi-Language</div><div class="ben-desc">Full support for English, Arabic, and French — with instant device swap approval and a threaded support ticket system.</div></div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section id="architecture" class="sec sec-alt">
+      <div class="sec-head c"><div class="sec-eye">Under The Hood</div><h2 class="sec-title">Clean <span class="gt">Plugin Architecture</span></h2><p class="sec-sub">Every feature lives in its own file. Adding a new feature means creating one new .py file — nothing else changes.</p></div>
+      <div style="max-width:700px;margin:0 auto" class="fade-u">
+        <div class="code-blk">UltraGateX/<br>├── main.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cc"># Entry point — loads plugins</span><br>├── config.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cc"># Env vars & constants</span><br>│<br>├── core/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cc"># Shared utilities</span><br>│&nbsp;&nbsp;&nbsp;├── security.py&nbsp;&nbsp;&nbsp;&nbsp;<span class="cc"># Auth, key gen, QR</span><br>│&nbsp;&nbsp;&nbsp;├── analytics.py&nbsp;&nbsp;&nbsp;<span class="cc"># Events, fraud, geo</span><br>│&nbsp;&nbsp;&nbsp;└── github_sync.py&nbsp;<span class="cc"># Push licenses.json</span><br>│<br>├── plugins/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cc"># 🔌 One file = one feature</span><br>│&nbsp;&nbsp;&nbsp;├── licenses.py&nbsp;&nbsp;&nbsp;&nbsp;<span class="cc"># /genkey /editkey</span><br>│&nbsp;&nbsp;&nbsp;├── honeypot.py&nbsp;&nbsp;&nbsp;&nbsp;<span class="cc"># Trap system</span><br>│&nbsp;&nbsp;&nbsp;└── updater.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cc"># /update self-update</span><br>│<br>└── data/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cc"># JSON data (gitignored)</span></div>
+      </div>
+    </section>
+
+    <!-- COMMANDS -->
+    <section class="sec">
+      <div class="sec-head c"><div class="sec-eye">User Experience</div><h2 class="sec-title">Self-Service <span class="gt">Commands</span></h2></div>
+      <div style="max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:8px" class="fade-u">
+        <div class="docs-endpoint"><span class="method-badge" style="background:rgba(167,139,250,0.15);color:#a78bfa">CMD</span> /mykey — Self-service license viewer</div>
+        <div class="docs-endpoint"><span class="method-badge" style="background:rgba(167,139,250,0.15);color:#a78bfa">CMD</span> /myqr — Resend your QR code anytime</div>
+        <div class="docs-endpoint"><span class="method-badge" style="background:rgba(167,139,250,0.15);color:#a78bfa">CMD</span> /myhistory — Full event timeline</div>
+        <div class="docs-endpoint"><span class="method-badge" style="background:rgba(167,139,250,0.15);color:#a78bfa">CMD</span> /check — Verify a license instantly</div>
+        <div class="docs-endpoint"><span class="method-badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">DEV</span> /setdevid — Set your real device ID</div>
+        <div class="docs-endpoint"><span class="method-badge" style="background:rgba(245,158,11,0.15);color:var(--amber)">DEV</span> /updatelog — Full update history</div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="sec sec-alt">
+      <div class="dl-box fade-u">
+        <div class="proj-ver" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.8)"><i class="fa-solid fa-lock"></i> Powers JMWhatsApp Ultra Licensing</div>
+        <h2 class="sec-title" style="font-size:clamp(1.6rem,3vw,2.2rem)">Secure Your <span class="gt">Distribution</span></h2>
+        <p style="color:var(--text-2);text-align:center;max-width:500px;line-height:1.7">Get in touch to license UltraGateX for your own bot ecosystem or WhatsApp mod project.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+          <a href="index.html#contact" class="btn btn-p btn-lg"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <footer id="footer">
+    <div class="foot-grid">
+      <div><div class="foot-logo-row"><img src="images/logo.jpg" class="foot-logo-img" alt=""><div class="foot-logo-name">JusticeTech <span>System</span></div></div><p class="foot-desc">Engineering AI automation, messaging infrastructure, and cloud-native software.</p></div>
+      <div><div class="foot-col-title">Navigate</div><a href="index.html" class="foot-link">Home</a><a href="pricing.html" class="foot-link">Pricing</a><a href="status.html" class="foot-link">Status</a></div>
+      <div><div class="foot-col-title">Projects</div><a href="jmwhatsapp.html" class="foot-link">JMWhatsApp</a><a href="ultragatex.html" class="foot-link">UltraGateX</a><a href="obfuscationary.html" class="foot-link">Obfuscationary</a></div>
+      <div><div class="foot-col-title">Company</div><a href="team.html" class="foot-link">Team</a><a href="changelog.html" class="foot-link">Changelog</a><a href="docs.html" class="foot-link">Docs</a></div>
+    </div>
+    <div class="foot-bottom"><div class="foot-copy">&copy; <span data-year></span> JusticeTech System.</div></div>
+  </footer>
+</div>
+</div>
+<a href="index.html#contact" id="float-chat"><span class="fc-live"></span>Chat With Us</a>
+<button id="btt"><i class="fa-solid fa-arrow-up"></i></button>
+<div id="toast-wrap"></div>
+<script src="js/script.js"></script><script src="js/features.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "JusticeTech System",
+  "short_name": "JusticeTech",
+  "description": "AI automation, WhatsApp systems, and cloud infrastructure",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#050510",
+  "theme_color": "#6c55f0",
+  "orientation": "portrait-primary",
+  "icons": [
+    {"src": "images/logo.jpg", "sizes": "640x640", "type": "image/jpeg", "purpose": "any maskable"}
+  ]
+}
